@@ -2,31 +2,67 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Perangkat Ajar Bahasa Inggris Tingkat Lanjut XI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Perangkat Ajar B. Inggris XI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="portal.css">
 </head>
 <body>
-<button id="menuBtn" aria-label="Menu">☰</button>
-<aside id="side">
-  <div class="brand">
-    <div class="logo">EN</div>
-    <div><b>English XI Lanjut</b><small>Fase F · Kelas XI · SMAN 1 Batam</small></div>
+<div class="wall"><i></i><i></i><i></i><i></i></div>
+
+<!-- Menu bar -->
+<header class="menubar">
+  <div class="mb-left">
+    <span class="mb-logo">✦</span>
+    <b>Perangkat Ajar</b>
+    <span class="mb-hide">Bahasa Inggris Tingkat Lanjut</span>
+    <span class="mb-hide">XI Hang Jebat</span>
+    <span class="mb-hide">TP 2026/2027</span>
   </div>
-  <nav id="nav"></nav>
-</aside>
-<div id="shade"></div>
-<main>
-  <header class="hero">
-    <p class="eyebrow">Tahun Pelajaran 2026/2027 · XI Hang Jebat</p>
-    <h1>Perangkat Ajar Bahasa Inggris Tingkat Lanjut</h1>
-    <p class="quote">“Education is the passport to the future.”</p>
-  </header>
-  <section id="isi"></section>
-  <footer>© 2026 Dea Arioktavia, S.Pd · SMA Negeri 1 Batam</footer>
-</main>
+  <div class="mb-right"><span class="mb-hide">🔋</span><span class="mb-hide">📶</span><span id="clock"></span></div>
+</header>
+
+<!-- Launchpad -->
+<section id="launch">
+  <div class="search"><span>⌕</span><input id="q" placeholder="Cari dokumen…" autocomplete="off"></div>
+  <div class="pad">
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+  <p class="hello">Selamat datang di ruang kerja <b>Ms. Dea Arioktavia</b> ✨ Klik ikon untuk membuka dokumen.</p>
+</section>
+
+<!-- Window -->
+<div id="win" class="win" hidden>
+  <aside class="side">
+    <div class="lights">
+      <button class="l r" title="Tutup" data-act="close"></button>
+      <button class="l y" title="Kecilkan" data-act="close"></button>
+      <button class="l g" title="Layar penuh" data-act="max"></button>
+    </div>
+    <div class="side-search"><span>⌕</span><input id="sq" placeholder="Search"></div>
+    <a class="me" href="#biodata">
+      <div class="ava">DA</div>
+      <div><b>Dea Arioktavia</b><small>Guru B. Inggris · SMAN 1 Batam</small></div>
+    </a>
+    <nav id="list"></nav>
+  </aside>
+  <section class="pane">
+    <div class="toolbar">
+      <button class="sb-toggle" id="sbt" title="Menu">☰</button>
+      <div class="arrows"><button onclick="history.back()">‹</button><button onclick="history.forward()">›</button></div>
+      <h1 id="wt"></h1>
+      <div class="tb-act" id="tba"></div>
+      <a class="home-m" href="#" title="Tutup">✕</a>
+    </div>
+    <div class="content" id="isi"></div>
+  </section>
+</div>
+
+<!-- Dock -->
+<footer class="dock" id="dock"></footer>
+
 <script src="portal.js"></script>
 </body>
 </html>
