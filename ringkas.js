@@ -65,22 +65,52 @@ const ELEMEN = [
   { e: "✍️", t: "Menulis – Mempresentasikan", d: "Menulis cerita dan pendapat berdata dengan struktur & bahasa yang tepat, lalu mempresentasikannya." }
 ];
 
+const mk = x => x.replace(/\((C\d[^)]*)\)/g, '<mark>$1</mark>');
+const card = (code, title, tags, body, c, open) => `<details class="tpd" style="--c:${c}"${open ? "" : ""}><summary><span class="code">${code}</span><div><b>${title}</b>${tags && tags.length ? `<small>${tags.map(t => `<em>${t}</em>`).join("")}</small>` : ""}</div></summary><div class="tpb">${body}</div></details>`;
 const statRow = items => `<div class="stats">${items.map(([v, l]) => `<div><b>${v}</b><small>${l}</small></div>`).join("")}</div>`;
 const uHead = u => `<span class="ub" style="--c:${u.c}">${u.e} Unit ${u.no}</span>`;
 
 const RINGKAS = {
   cp: () => `
-    <div class="lead"><span class="pill">Fase F · Tingkat Lanjut</span><h2>Capaian Pembelajaran</h2><p>Di akhir Fase F, murid berbahasa Inggris setara <b>CEFR B2</b> lewat teks narasi dan eksposisi.</p></div>
-    <div class="cards3">${ELEMEN.map(x => `<div class="bub"><i>${x.e}</i><b>${x.t}</b><p>${x.d}</p></div>`).join("")}</div>
-    <h3 class="sec">CP per unit</h3>
-    <div class="ulist">${UNITS.map(u => `<div class="urow" style="--c:${u.c}">${uHead(u)}<div><b>${u.jenis}</b><p>Pahami struktur (C2) → analisis bahasa (C4) → evaluasi isi (C5) → cipta <b>${u.produk}</b> (C6).</p></div></div>`).join("")}</div>`,
+    <div class="lead"><span class="pill">Fase F · Tingkat Lanjut · CEFR B2</span><h2>Capaian Pembelajaran</h2><p>CP resmi per elemen dan CP kontekstual per unit. Klik untuk membuka.</p></div>
+    <details class="ud" style="--c:#a78bff" open><summary><span class="ub">🎯 CP</span><b>Capaian Pembelajaran per Elemen (Fase F)</b><small>3 elemen</small></summary>
+      <div class="udb">${CP_EL.map((r, i) => card(ELEMEN[i].e, r[0], "", `<p class="tpx">${r[1]}</p>`, "#a78bff")).join("")}</div></details>
+    <details class="ud" style="--c:#3fb7ff"><summary><span class="ub">🧩 Unit</span><b>CP Kontekstual per Unit (Kelas XI)</b><small>4 unit</small></summary>
+      <div class="udb">${UNITS.map((u, i) => card(u.e, `Unit ${u.no} · ${u.jenis}`, [`“${u.t}”`], `<p class="tpx">${mk(CP_U[i])}</p>`, u.c)).join("")}</div></details>`,
 
   "analisis-cp": () => `
-    <div class="lead"><span class="pill">16 TP · 4 Unit</span><h2>Analisis CP</h2><p>Apa yang dipelajari di tiap unit, dalam satu tabel.</p></div>
-    <div class="tw"><table class="mini"><tr><th>Unit</th><th>Struktur teks</th><th>Unsur kebahasaan</th><th>Produk</th></tr>
-    ${UNITS.map(u => `<tr><td>${uHead(u)}</td><td>${u.no < 3 ? "Orientation – Complication – Resolution" : u.no === 3 ? "Thesis – Arguments – Reiteration" : "Thesis – Arguments – Recommendation"}</td><td>${u.bahasa}</td><td>${u.produk}</td></tr>`).join("")}
-    </table></div>
-    <p class="note">Teks diskusi (pro-kontra) tidak di kelas XI, lanjut di kelas XII.</p>`,
+    <div class="lead"><span class="pill">16 TP · 4 Unit</span><h2>Analisis Capaian Pembelajaran</h2><p>Lingkup materi tiap elemen. Klik elemen untuk membuka.</p></div>
+    ${ANCP.map(([el, xs], i) => `<details class="ud" style="--c:${["#3fd47a", "#3fb7ff", "#ff8a4c"][i]}"${i ? "" : " open"}>
+      <summary><span class="ub">${ELEMEN[i].e} Elemen ${i + 1}</span><b>${el}</b><small>${xs.filter(x => !x.startsWith("(")).length} poin</small></summary>
+      <div class="udb"><ol class="pts">${xs.map(x => x.startsWith("(") ? `<li class="nt">${x.slice(1, -1)}</li>` : `<li>${x}</li>`).join("")}</ol></div></details>`).join("")}`,
+
+  kktp: () => `
+    <div class="lead"><span class="pill">Interval nilai · 4 kategori</span><h2>Kriteria Ketercapaian TP</h2><p>Deskripsi capaian dan rubrik tiap TP.</p>
+      <div class="lv lv-h"><span class="l0">Perlu Bimbingan 0–74</span><span class="l1">Cukup 75–83</span><span class="l2">Baik 84–90</span><span class="l3">Sangat Baik 91–100</span></div></div>
+    ${UNITS.map(u => `<details class="ud" style="--c:${u.c}"${u.no === 1 ? " open" : ""}>
+      <summary><span class="ub">${u.e} Unit ${u.no}</span><b>${u.jenis} · “${u.t}”</b><small>4 TP</small></summary>
+      <div class="udb">${KKTP.filter(r => r[0].startsWith("Unit " + u.no)).map((r, i) => card(u.tp[i].k, u.tp[i].t, [u.tp[i].b], `
+        <p class="tpx">${r[2]}</p>
+        <div class="mat"><small>Materi</small>${r[1].split(";").map(x => `<span>${x.trim()}</span>`).join("")}</div>
+        <div class="lv">${r.slice(3).map((x, j) => `<div class="l${j}"><b>${["Perlu Bimbingan", "Cukup", "Baik", "Sangat Baik"][j]} <i>${["0–74", "75–83", "84–90", "91–100"][j]}</i></b>${x}</div>`).join("")}</div>`, u.c, true)).join("")}</div>
+    </details>`).join("")}`,
+
+  prota: () => `
+    <div class="lead"><span class="pill">5 JP/minggu · 35 minggu efektif</span><h2>Program Tahunan</h2><p>SMA Negeri 1 Batam · Bahasa Inggris Tingkat Lanjut · F / XI · 2026/2027</p></div>
+    ${["Ganjil", "Genap"].map(s => `<details class="ud" style="--c:${s === "Ganjil" ? "#a78bff" : "#3fb7ff"}" open>
+      <summary><span class="ub">📅 Semester ${s}</span><b>${s === "Ganjil" ? "17" : "18"} Minggu Efektif</b><small>${UNITS.filter(u => u.sem === s).reduce((a, u) => a + u.jp, 0)} JP</small></summary>
+      <div class="udb">${PROTA.filter(r => UNITS[+r.u.slice(-1) - 1].sem === s).map(r => { const u = UNITS[+r.u.slice(-1) - 1];
+        return card(u.e, `${r.u} · ${r.tema}`, [r.jenis, r.jp + " JP"], `<ol class="pts">${r.tp[0].split(" | ").map(x => `<li>${mk(x)}</li>`).join("")}</ol>`, u.c); }).join("")}</div>
+    </details>`).join("")}
+    <p class="note">${PROTA_NOTE}</p>`,
+
+  prosem: () => PROSEM.map(S => {
+    const g = []; S.items.filter(x => x.tp && x.no !== "").forEach(x => { const m = x.w[0] ? x.w[0].split(" ")[0] : (g.length ? g[g.length - 1].m : "-"); if (!g.length || g[g.length - 1].m !== m) g.push({ m, xs: [] }); g[g.length - 1].xs.push(x); });
+    return `<details class="ud" style="--c:${S.sem.includes("Ganjil") ? "#a78bff" : "#3fb7ff"}"${S.sem.includes("Ganjil") ? " open" : ""}>
+      <summary><span class="ub">🗓️ ${S.sem.replace("Prosem ", "Semester ")}</span><b>${g.map(x => x.m).join(" · ")}</b><small>${S.items.filter(x => /^\d/.test(x.no)).length} minggu KBM</small></summary>
+      <div class="udb">${g.map(({ m, xs }) => card(m.slice(0, 3), m, [xs.length + " kegiatan"], `<div class="wk">${xs.map(x => { const u = UNITS[+x.no[0] - 1];
+        return `<div style="--c:${u ? u.c : "#8b8a99"}"><span>${x.w[0] ? "M" + x.w[0].split(" M")[1] : "–"}</span><div><b>${x.no !== "-" ? `<em>${x.no}</em>` : ""}${x.tp.split(" — ")[0].split(" [")[0]}</b><small>${x.ket}</small></div></div>`; }).join("")}</div>`, "#a78bff")).join("")}</div>
+    </details>`; }).join(""),
 
   atp: () => `
     <div class="lead"><span class="pill">175 JP · 70 pertemuan · 35 minggu</span><h2>Alur Tujuan Pembelajaran</h2><p>16 TP inti + 4 evaluasi. Klik unit atau TP untuk membuka detailnya.</p></div>
