@@ -6,6 +6,7 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
 const ACT = {}; Object.values(L.units).forEach(u => u.aktivitas.forEach(a => ACT[a.id] = { ...a, unit: u }));
 
 // ---------- page (content layer) ----------
+const CORNER_NAME = { u1: "🌿 Nature Corner", u2: "🪞 Self-Discovery Corner", u3: "🌍 Green School Corner", u4: "🥗 Healthy Life Corner" };
 const UNIT_BG = {
   u1: "radial-gradient(60% 60% at 15% 15%,#7ee08a,transparent 60%),radial-gradient(50% 60% at 90% 30%,#1fb5a0,transparent 60%),radial-gradient(70% 60% at 60% 100%,#0f5f3a,transparent 65%),#1d7a46",
   u2: "radial-gradient(60% 60% at 15% 15%,#c58bff,transparent 60%),radial-gradient(50% 60% at 90% 30%,#ff7ac6,transparent 60%),radial-gradient(70% 60% at 60% 100%,#3b1c8f,transparent 65%),#5a2bc4",
@@ -39,7 +40,7 @@ function unitSection(k, u, sem, si) {
     <p class="u-desk">${u.desk}</p>
     <div class="u-tags">${u.tags.map(t => `<span class="glass clear">${t}</span>`).join("")}</div>
     <div class="panel glass clear"><div class="acts">${u.aktivitas.map(a => `<button class="act" onclick="openAct('${a.id}', this)"><span class="i">${a.ic}</span><span><b>${a.t}</b><small>${a.note || ""}</small></span>${best[a.id] != null ? `<span class="best">⭐ ${best[a.id]}</span>` : ""}</button>`).join("")}</div></div>
-    <div class="u-row"><button class="cta" onclick="openMateri('${k}', this)">Read the Summary →</button><a class="cta" href="lkpd.html?u=${+u.no}" style="text-decoration:none">📝 Worksheets (LKPD) →</a></div>
+    <div class="u-row"><button class="cta" onclick="openMateri('${k}', this)">Read the Summary →</button><a class="cta" href="corner.html?u=${+u.no}" style="text-decoration:none">${CORNER_NAME[k]} →</a></div>
     <div class="u-row"><span class="lbl">🎬 Video</span>${u.video.concat(u.inspirasi || []).map(([t, url]) => `<a class="chip glass clear" href="${url}" target="_blank" rel="noopener">▶ ${t}</a>`).join("")}</div>
   </section>`;
 }
