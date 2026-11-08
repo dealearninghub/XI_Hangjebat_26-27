@@ -68,8 +68,9 @@ const BIODATA = () => `
   <div class="shortcuts">${APPS.filter(a => a.id !== "biodata").map(a => `<a href="#${a.id}">${icon(a)}<span>${label(a)}</span></a>`).join("")}</div>`;
 
 const cache = {};
+const hid = () => location.hash.slice(1).split("/")[0];
 function mark() {
-  const id = location.hash.slice(1);
+  const id = hid();
   document.querySelectorAll("#list a,#dock a").forEach(a => {
     a.classList.toggle(a.closest("#dock") ? "run" : "on", a.dataset.id === id);
     if (a.closest("#dock") && a.dataset.id !== id) a.classList.remove("run");
@@ -77,22 +78,24 @@ function mark() {
   $(".me").classList.toggle("on", id === "biodata");
 }
 async function route() {
-  const id = location.hash.slice(1);
+  const id = hid(), full = location.hash.endsWith("/lengkap"), short = !full && RINGKAS[id];
   const a = APPS.find(x => x.id === id);
   const win = $("#win");
   if (!a) { win.hidden = true; document.body.classList.remove("has-win"); mark(); return; }
   win.hidden = false; win.classList.remove("sb"); document.body.classList.add("has-win");
   $("#wt").textContent = a.t; mark();
   const isi = $("#isi"); isi.classList.toggle("frame", !!a.frame); isi.scrollTop = 0;
-  $("#tba").innerHTML = a.f ? `${id.startsWith("rpm") ? `<button class="hide-m" onclick="document.querySelectorAll('details').forEach(d=>d.open=!d.open)">Buka/Tutup</button>` : ""}
+  const sw = RINGKAS[id] ? (full ? `<a href="#${id}">✦ Ringkas</a>` : `<a href="#${id}/lengkap">📄<span class="vl"> Versi</span> lengkap</a>`) : "";
+  $("#tba").innerHTML = a.f ? `${sw}${id.startsWith("rpm") && full ? `<button class="hide-m" onclick="document.querySelectorAll('details').forEach(d=>d.open=!d.open)">Buka/Tutup</button>` : ""}
       <button class="hide-m" onclick="print()">Cetak</button><a class="pri" href="unduh/${a.f}" download>Unduh</a>`
     : a.frame ? `<a class="pri" href="${a.frame}" target="_blank">Buka penuh ↗</a>` : "";
   if (id === "biodata") { isi.innerHTML = BIODATA(); return; }
+  if (short) { isi.innerHTML = `<div class="sum">${RINGKAS[id]()}</div>`; return; }
   if (a.frame) { isi.innerHTML = `<iframe src="${a.frame}" title="${a.t}"></iframe>`; return; }
   isi.innerHTML = `<p style="color:var(--muted)">Memuat…</p>`;
   try {
     cache[id] ??= await fetch(`dokumen/${id}.html`).then(r => { if (!r.ok) throw 0; return r.text(); });
-    if (location.hash.slice(1) === id) isi.innerHTML = cache[id];
+    if (hid() === id) isi.innerHTML = cache[id];
   } catch (e) { isi.innerHTML = `<p>Dokumen gagal dimuat. Coba muat ulang halaman.</p>`; }
 }
 document.querySelector(".lights").onclick = e => {
@@ -110,6 +113,24 @@ function tick() {
   $("#clock").textContent = d.toLocaleDateString("id-ID", { weekday: "short", day: "numeric", month: "short" }) + "  " + d.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" });
 }
 tick(); setInterval(tick, 15000);
+
+// ===== Bubbles =====
+(function () {
+  const box = $("#bubbles"), n = innerWidth < 700 ? 14 : 24, r = (a, b) => a + Math.random() * (b - a);
+  box.innerHTML = Array.from({ length: n }, () => {
+    const s = r(18, 120);
+    return `<span class="bub-f" style="width:${s}px;height:${s}px;left:${r(-5, 100)}vw;--h:${r(180, 340) | 0};--x:${r(-8, 8)}vw;--d:${r(14, 30)}s;--dl:-${r(0, 30)}s"></span>`;
+  }).join("");
+  const burst = (x, y) => {
+    for (let i = 0; i < 9; i++) {
+      const b = document.createElement("span"), s = r(10, 44), a = Math.random() * 6.28, d = r(40, 130);
+      b.className = "pop";
+      b.style.cssText = `left:${x}px;top:${y}px;width:${s}px;height:${s}px;--h:${r(180, 340) | 0};--x:${Math.cos(a) * d}px;--y:${Math.sin(a) * d - 40}px`;
+      document.body.appendChild(b); setTimeout(() => b.remove(), 1200);
+    }
+  };
+  addEventListener("pointerdown", e => { if (e.target.closest("#launch") && !e.target.closest("a,button,input")) burst(e.clientX, e.clientY); });
+})();
 
 drawGrid(); drawSide();
 addEventListener("hashchange", route); route();
