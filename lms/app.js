@@ -5,39 +5,108 @@ let best = store.get("lab-best", {});
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const ACT = {}; Object.values(L.units).forEach(u => u.aktivitas.forEach(a => ACT[a.id] = { ...a, unit: u }));
 
-// ---------- page ----------
+// ---------- page (content layer) ----------
+const UNIT_BG = {
+  u1: "radial-gradient(60% 60% at 15% 15%,#7ee08a,transparent 60%),radial-gradient(50% 60% at 90% 30%,#1fb5a0,transparent 60%),radial-gradient(70% 60% at 60% 100%,#0f5f3a,transparent 65%),#1d7a46",
+  u2: "radial-gradient(60% 60% at 15% 15%,#c58bff,transparent 60%),radial-gradient(50% 60% at 90% 30%,#ff7ac6,transparent 60%),radial-gradient(70% 60% at 60% 100%,#3b1c8f,transparent 65%),#5a2bc4",
+  u3: "radial-gradient(60% 60% at 15% 15%,#5ad1ff,transparent 60%),radial-gradient(50% 60% at 90% 30%,#3d6bff,transparent 60%),radial-gradient(70% 60% at 60% 100%,#0a2f7a,transparent 65%),#0d57c4",
+  u4: "radial-gradient(60% 60% at 15% 15%,#ffc46b,transparent 60%),radial-gradient(50% 60% at 90% 30%,#ff5f8f,transparent 60%),radial-gradient(70% 60% at 60% 100%,#a3261a,transparent 65%),#e2552c"
+};
+const MESH = c => `<div class="mesh">${c.map((x, i) => `<i style="background:${x};left:${[5, 55, 25][i]}%;top:${[5, 15, 55][i]}%"></i>`).join("")}</div>`;
+const TABS = [["beranda", "🏠", "Beranda"], ["u1", "🌿", "Ganjil"], ["u3", "🌍", "Genap"], ["pustaka", "📚", "Pustaka"], ["profil", "👩‍🏫", "Profil"]];
+
 function render() {
-  const units = Object.entries(L.units);
-  $("#quick").innerHTML = L.semester.map(s => `<small>${s.nama}</small>` + s.units.map(k => `<a href="#${k}">${L.units[k].emoji} Unit ${+L.units[k].no}</a>`).join("")).join("");
-  $("#hero").innerHTML = `<p class="k">Bahasa Inggris Tingkat Lanjut · Kelas XI Fase F</p>
-    <h1>Selamat datang di Lab English<br>Ms. Dea 👋</h1><p class="tag">${L.tagline}</p>
-    <div class="pills">${L.heroLinks.concat(L.driveLinks.filter(d => d.url !== "#")).map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.t}</a>`).join("")}</div>`;
-  $("#sems").innerHTML = L.semester.map(s => `<section class="sem"><h2>${s.nama}</h2><p>${s.sub}</p>${s.units.map(k => unitCard(k, L.units[k])).join("")}</section>`).join("");
-  $("#extra").innerHTML = `<h2>📚 Perpustakaan Digital</h2><p class="intro">Bacaan dan referensi bahasa Inggris gratis untuk memperkaya belajarmu.</p><div class="vids">${L.perpustakaan.map(p => `<a href="${p.url}" target="_blank" rel="noopener">${p.t} →</a>`).join("")}</div>`;
-  $("#guru").innerHTML = `<div class="ava">DA</div><div><h2>${L.guru}</h2><p class="intro" style="margin:0">${L.jabatan}</p></div>`;
-  $("#foot").innerHTML = `© 2026 Lab English XI Lanjut · SMAN 1 Batam · <a href="../">Perangkat Ajar Guru</a>`;
+  $("#beranda").innerHTML = MESH(["#7b7cff", "#ff8cc6", "#ffc16b"]) + `
+    <p class="eyebrow">Bahasa Inggris Tingkat Lanjut · Kelas XI · Fase F</p>
+    <h1 class="display">Lab English<br>Ms. Dea.</h1>
+    <p class="lede">${L.tagline}</p>
+    <div class="chips">${L.heroLinks.concat(L.driveLinks.filter(d => d.url !== "#")).map(l => `<a class="chip glass clear" href="${l.url}" target="_blank" rel="noopener">${l.t}</a>`).join("")}</div>`;
+  $("#sems").innerHTML = L.semester.map((s, si) => s.units.map((k, i) => unitSection(k, L.units[k], i === 0 ? s : null, si)).join("")).join("");
+  $("#pustaka").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Ekstra</p><h2>Perpustakaan Digital</h2><p class="sub">Bacaan dan referensi bahasa Inggris gratis untuk memperkaya belajarmu.</p>
+    <div class="list">${L.perpustakaan.map(p => `<a href="${p.url}" target="_blank" rel="noopener">${p.t}<span>↗</span></a>`).join("")}</div>`;
+  $("#profil").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Guru Pengampu</p><div class="prof"><div class="ava">DA</div><div><h3>${L.guru}</h3><p>${L.jabatan}</p></div></div>
+    <p class="foot">© 2026 Lab English XI Lanjut · SMAN 1 Batam · <a href="../">Perangkat Ajar Guru</a></p>`;
+  $("#seg").innerHTML = `<i class="blob" id="segBlob"></i>` + Object.entries(L.units).map(([k, u]) => `<a href="#${k}" data-k="${k}">${u.emoji} <span>Unit ${+u.no}</span></a>`).join("");
+  $("#tabbar").innerHTML = `<i class="blob" id="tabBlob"></i>` + TABS.map(([k, e, t]) => `<a href="#${k}" data-k="${k}"><b>${e}</b><span>${t}</span></a>`).join("");
+  wireGlass(); onScroll();
 }
-function unitCard(k, u) {
-  return `<article class="unit" id="${k}" style="--c:${u.warna}">
-    <div class="u-head"><div class="u-ic">${u.emoji}</div><div><div class="u-no">BAB ${u.no}</div><h3>${u.judul}</h3><div class="u-jenis">${u.jenis}</div></div></div>
-    <p class="u-desk">${u.desk}</p><div class="tags">${u.tags.map(t => `<span>${t}</span>`).join("")}</div>
-    <div class="acts">${u.aktivitas.map(a => `<button class="act" onclick="openAct('${a.id}')"><span class="i">${a.ic}</span><span><b>${a.t}</b><small>${a.note || ""}</small></span>${best[a.id] != null ? `<span class="best">⭐ ${best[a.id]}</span>` : ""}</button>`).join("")}</div>
-    <div class="sub-h">🎬 Video Pembelajaran</div>
-    <div class="vids">${u.video.concat(u.inspirasi || []).map(([t, url]) => `<a href="${url}" target="_blank" rel="noopener">▶ ${t}</a>`).join("")}</div>
-    <div class="u-foot"><button class="main-btn" onclick="openMateri('${k}')">Ringkasan Materi →</button></div>
-  </article>`;
+function unitSection(k, u, sem, si) {
+  return `<section class="unit tone-dark" id="${k}" data-tab="${si ? "u3" : "u1"}" data-unit="${k}" style="--bg:${UNIT_BG[k]}">
+    ${MESH(["rgba(255,255,255,.35)", "rgba(255,255,255,.18)", "rgba(0,0,0,.25)"])}
+    ${sem ? `<div class="sem-label glass clear">${sem.nama} · ${sem.sub}</div>` : ""}
+    <div class="u-top"><span class="u-emoji">${u.emoji}</span><span class="eyebrow" style="margin:0">Bab ${u.no} · ${u.jenis}</span></div>
+    <h2 class="u-title">${u.judul}</h2>
+    <p class="u-desk">${u.desk}</p>
+    <div class="u-tags">${u.tags.map(t => `<span class="glass clear">${t}</span>`).join("")}</div>
+    <div class="panel glass clear"><div class="acts">${u.aktivitas.map(a => `<button class="act" onclick="openAct('${a.id}', this)"><span class="i">${a.ic}</span><span><b>${a.t}</b><small>${a.note || ""}</small></span>${best[a.id] != null ? `<span class="best">⭐ ${best[a.id]}</span>` : ""}</button>`).join("")}</div></div>
+    <div class="u-row"><button class="cta" onclick="openMateri('${k}', this)">Ringkasan Materi →</button></div>
+    <div class="u-row"><span class="lbl">🎬 Video</span>${u.video.concat(u.inspirasi || []).map(([t, url]) => `<a class="chip glass clear" href="${url}" target="_blank" rel="noopener">▶ ${t}</a>`).join("")}</div>
+  </section>`;
 }
 
-// ---------- modal ----------
-function openModal(title, html) { $("#mt").textContent = title; $("#mb").innerHTML = html; $("#modal").hidden = false; document.body.style.overflow = "hidden"; $("#mb").scrollTop = 0; }
-function closeModal() { $("#modal").hidden = true; document.body.style.overflow = ""; render(); }
-$("#mx").onclick = closeModal;
-$("#modal").onclick = e => { if (e.target.id === "modal") closeModal(); };
-addEventListener("keydown", e => { if (e.key === "Escape" && !$("#modal").hidden) closeModal(); });
-window.openMateri = k => openModal(`📖 Ringkasan Materi · Unit ${+L.units[k].no}`, `<div class="mat">${L.units[k].materi}</div>`);
+// ---------- controls: adaptive tint, active blob, shrink on scroll ----------
+function moveBlob(blob, el) { if (!blob || !el) return; blob.style.left = el.offsetLeft + "px"; blob.style.width = el.offsetWidth + "px"; }
+function toneUnder(el) {
+  const r = el.getBoundingClientRect(), y = r.top + r.height / 2;
+  const hit = [...document.querySelectorAll("#content > section, #sems > section")].find(s => { const b = s.getBoundingClientRect(); return b.top <= y && b.bottom >= y; });
+  el.classList.toggle("on-light", !!hit && hit.classList.contains("tone-light"));
+  el.classList.toggle("on-dark", !hit || hit.classList.contains("tone-dark"));
+}
+let lastY = scrollY, ticking = false;
+function onScroll() {
+  const y = scrollY; document.body.classList.toggle("compact", y > lastY + 4 && y > 120); if (y < lastY - 4 || y < 120) document.body.classList.remove("compact"); lastY = y;
+  toneUnder($("#topbar")); toneUnder($("#tabbar"));
+  const mid = innerHeight * .4;
+  const sec = [...document.querySelectorAll("#content > section, #sems > section")].find(s => { const b = s.getBoundingClientRect(); return b.top <= mid && b.bottom > mid; });
+  if (sec) {
+    const tab = document.querySelector(`#tabbar a[data-k="${sec.dataset.tab}"]`);
+    document.querySelectorAll("#tabbar a").forEach(a => a.classList.toggle("on", a === tab)); moveBlob($("#tabBlob"), tab);
+    const seg = document.querySelector(`#seg a[data-k="${sec.dataset.unit}"]`);
+    $("#segBlob").style.opacity = seg ? 1 : 0; if (seg) moveBlob($("#segBlob"), seg);
+  }
+}
+addEventListener("scroll", () => { if (!ticking) { requestAnimationFrame(() => { onScroll(); ticking = false; }); ticking = true; } }, { passive: true });
+addEventListener("resize", onScroll);
+// specular highlight follows the pointer (and device tilt on phones)
+function wireGlass() {
+  document.querySelectorAll(".glass").forEach(g => g.onpointermove = e => { const r = g.getBoundingClientRect(); g.style.setProperty("--mx", (e.clientX - r.left) + "px"); g.style.setProperty("--my", (e.clientY - r.top) + "px"); });
+}
+addEventListener("deviceorientation", e => { if (e.gamma == null) return; document.documentElement.style.setProperty("--mx", (50 + e.gamma) + "%"); document.documentElement.style.setProperty("--my", Math.max(0, e.beta - 30) + "%"); });
+if (/Chrome\//.test(navigator.userAgent) && !/Edg\/|OPR\//.test(navigator.userAgent) && matchMedia("(min-width:701px)").matches) document.documentElement.classList.add("lens");
+
+// ---------- sheet: morphs out of the tapped control (FLIP + spring) ----------
+let origin = null;
+function openModal(title, html, from) {
+  if (from) origin = from.getBoundingClientRect();
+  const sh = $("#sheet"), first = sh.hidden;
+  $("#mt").textContent = title; $("#mb").innerHTML = html; $("#mb").scrollTop = 0;
+  sh.hidden = false; $("#scrim").hidden = false; document.body.style.overflow = "hidden"; wireGlass();
+  if (first && origin) {
+    const end = sh.getBoundingClientRect();
+    const dx = origin.left + origin.width / 2 - (end.left + end.width / 2), dy = origin.top + origin.height / 2 - (end.top + end.height / 2);
+    const base = getComputedStyle(sh).transform === "none" ? "" : getComputedStyle(sh).transform;
+    sh.animate([{ transform: `${base} translate(${dx}px,${dy}px) scale(${origin.width / end.width},${origin.height / end.height})`, borderRadius: "999px", opacity: .4 },
+                { transform: base || "none", borderRadius: "36px", opacity: 1 }], { duration: 620, easing: "cubic-bezier(.34,1.4,.64,1)" });
+    $("#mb").animate([{ opacity: 0 }, { opacity: 0, offset: .35 }, { opacity: 1 }], { duration: 520 });
+  }
+}
+function closeModal() {
+  const sh = $("#sheet"); if (sh.hidden) return;
+  const done = () => { sh.hidden = true; $("#scrim").hidden = true; document.body.style.overflow = ""; render(); };
+  if (origin) {
+    const end = sh.getBoundingClientRect(), base = getComputedStyle(sh).transform === "none" ? "" : getComputedStyle(sh).transform;
+    const dx = origin.left + origin.width / 2 - (end.left + end.width / 2), dy = origin.top + origin.height / 2 - (end.top + end.height / 2);
+    sh.animate([{ transform: base || "none", opacity: 1 }, { transform: `${base} translate(${dx}px,${dy}px) scale(${origin.width / end.width},${origin.height / end.height})`, borderRadius: "999px", opacity: 0 }],
+      { duration: 340, easing: "cubic-bezier(.4,0,.2,1)" }).onfinish = done;
+  } else done();
+}
+window.closeModal = closeModal;
+$("#mx").onclick = closeModal; $("#scrim").onclick = closeModal;
+addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+window.openMateri = (k, el) => openModal(`📖 Ringkasan Materi · Unit ${+L.units[k].no}`, `<div class="mat">${L.units[k].materi}</div>`, el);
 
 let cur;
-window.openAct = id => { cur = ACT[id]; ({ quiz: Quiz, game: Game, sort: Sort, classify: Classify, fill: Fill })[cur.type].start(); };
+window.openAct = (id, el) => { if (el) origin = el.getBoundingClientRect(); cur = ACT[id]; ({ quiz: Quiz, game: Game, sort: Sort, classify: Classify, fill: Fill })[cur.type].start(); };
 
 function finish(score, extra = "") {
   const old = best[cur.id]; if (old == null || score > old) { best[cur.id] = score; store.set("lab-best", best); }
@@ -101,7 +170,7 @@ const Sort = {
   show(checked) {
     openModal(`${cur.ic} ${cur.t}`, `<p class="intro">${cur.intro} Gunakan tombol ▲▼ untuk memindahkan.</p>
       <ul class="sort">${this.order.map((v, i) => { const [lab, txt] = split(cur.items[v]);
-        return `<li class="${checked ? (v === i ? "right" : "wrong") : ""}"><span>${checked && lab ? `<span class="lbl">${esc(lab)}</span>` : ""}${esc(txt)}</span>
+        return `<li class="${checked ? (v === i ? "right" : "wrong") : ""}"><span class="t">${checked && lab ? `<span class="tag">${esc(lab)}</span>` : ""}${esc(txt)}</span>
         <span class="mv"><button data-u="${i}" ${checked ? "disabled" : ""}>▲</button><button data-d="${i}" ${checked ? "disabled" : ""}>▼</button></span></li>`; }).join("")}</ul>
       <div class="row">${checked ? "" : `<button class="btn" id="ck">Periksa</button>`}</div>`);
     document.querySelectorAll("[data-u]").forEach(b => b.onclick = () => { const i = +b.dataset.u; if (i > 0) { [this.order[i - 1], this.order[i]] = [this.order[i], this.order[i - 1]]; this.show(); } });
@@ -152,3 +221,5 @@ const Fill = {
 };
 
 render();
+["#tabbar", "#topbar"].forEach(s => $(s).addEventListener("transitionend", () => { moveBlob($("#tabBlob"), $("#tabbar a.on")); }));
+setTimeout(onScroll, 400);
