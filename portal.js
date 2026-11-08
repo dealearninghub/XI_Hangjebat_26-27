@@ -114,23 +114,5 @@ function tick() {
 }
 tick(); setInterval(tick, 15000);
 
-// ===== Bubbles =====
-(function () {
-  const box = $("#bubbles"), n = innerWidth < 700 ? 14 : 24, r = (a, b) => a + Math.random() * (b - a);
-  box.innerHTML = Array.from({ length: n }, () => {
-    const s = r(18, 120);
-    return `<span class="bub-f" style="width:${s}px;height:${s}px;left:${r(-5, 100)}vw;--h:${r(180, 340) | 0};--x:${r(-8, 8)}vw;--d:${r(14, 30)}s;--dl:-${r(0, 30)}s"></span>`;
-  }).join("");
-  const burst = (x, y) => {
-    for (let i = 0; i < 9; i++) {
-      const b = document.createElement("span"), s = r(10, 44), a = Math.random() * 6.28, d = r(40, 130);
-      b.className = "pop";
-      b.style.cssText = `left:${x}px;top:${y}px;width:${s}px;height:${s}px;--h:${r(180, 340) | 0};--x:${Math.cos(a) * d}px;--y:${Math.sin(a) * d - 40}px`;
-      document.body.appendChild(b); setTimeout(() => b.remove(), 1200);
-    }
-  };
-  addEventListener("pointerdown", e => { if (e.target.closest("#launch") && !e.target.closest("a,button,input")) burst(e.clientX, e.clientY); });
-})();
-
 drawGrid(); drawSide();
 addEventListener("hashchange", route); route();
