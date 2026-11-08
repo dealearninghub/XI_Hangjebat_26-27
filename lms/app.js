@@ -13,19 +13,19 @@ const UNIT_BG = {
   u4: "radial-gradient(60% 60% at 15% 15%,#ffc46b,transparent 60%),radial-gradient(50% 60% at 90% 30%,#ff5f8f,transparent 60%),radial-gradient(70% 60% at 60% 100%,#a3261a,transparent 65%),#e2552c"
 };
 const MESH = c => `<div class="mesh">${c.map((x, i) => `<i style="background:${x};left:${[5, 55, 25][i]}%;top:${[5, 15, 55][i]}%"></i>`).join("")}</div>`;
-const TABS = [["beranda", "🏠", "Beranda"], ["u1", "🌿", "Ganjil"], ["u3", "🌍", "Genap"], ["pustaka", "📚", "Pustaka"], ["profil", "👩‍🏫", "Profil"]];
+const TABS = [["beranda", "🏠", "Home"], ["u1", "🌿", "Sem 1"], ["u3", "🌍", "Sem 2"], ["pustaka", "📚", "Library"], ["profil", "👩‍🏫", "Teacher"]];
 
 function render() {
   $("#beranda").innerHTML = MESH(["#7b7cff", "#ff8cc6", "#ffc16b"]) + `
-    <p class="eyebrow">Bahasa Inggris Tingkat Lanjut · Kelas XI · Fase F</p>
+    <p class="eyebrow">Advanced English · Grade XI</p>
     <h1 class="display">Lab English<br>Ms. Dea.</h1>
     <p class="lede">${L.tagline}</p>
     <div class="chips">${L.heroLinks.concat(L.driveLinks.filter(d => d.url !== "#")).map(l => `<a class="chip glass clear" href="${l.url}" target="_blank" rel="noopener">${l.t}</a>`).join("")}</div>`;
   $("#sems").innerHTML = L.semester.map((s, si) => s.units.map((k, i) => unitSection(k, L.units[k], i === 0 ? s : null, si)).join("")).join("");
-  $("#pustaka").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Ekstra</p><h2>Perpustakaan Digital</h2><p class="sub">Bacaan dan referensi bahasa Inggris gratis untuk memperkaya belajarmu.</p>
+  $("#pustaka").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Extra</p><h2>Digital Library</h2><p class="sub">Free English books and websites to read more.</p>
     <div class="list">${L.perpustakaan.map(p => `<a href="${p.url}" target="_blank" rel="noopener">${p.t}<span>↗</span></a>`).join("")}</div>`;
-  $("#profil").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Guru Pengampu</p><div class="prof"><div class="ava">DA</div><div><h3>${L.guru}</h3><p>${L.jabatan}</p></div></div>
-    <p class="foot">© 2026 Lab English XI Lanjut · SMAN 1 Batam · <a href="../">Perangkat Ajar Guru</a></p>`;
+  $("#profil").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Your Teacher</p><div class="prof"><div class="ava">DA</div><div><h3>${L.guru}</h3><p>${L.jabatan}</p></div></div>
+    <p class="foot">© 2026 Lab English XI Lanjut · SMAN 1 Batam · <a href="../">Teacher's Page</a></p>`;
   $("#seg").innerHTML = `<i class="blob" id="segBlob"></i>` + Object.entries(L.units).map(([k, u]) => `<a href="#${k}" data-k="${k}">${u.emoji} <span>Unit ${+u.no}</span></a>`).join("");
   $("#tabbar").innerHTML = `<i class="blob" id="tabBlob"></i>` + TABS.map(([k, e, t]) => `<a href="#${k}" data-k="${k}"><b>${e}</b><span>${t}</span></a>`).join("");
   wireGlass(); onScroll();
@@ -34,12 +34,12 @@ function unitSection(k, u, sem, si) {
   return `<section class="unit tone-dark" id="${k}" data-tab="${si ? "u3" : "u1"}" data-unit="${k}" style="--bg:${UNIT_BG[k]}">
     ${MESH(["rgba(255,255,255,.35)", "rgba(255,255,255,.18)", "rgba(0,0,0,.25)"])}
     ${sem ? `<div class="sem-label glass clear">${sem.nama} · ${sem.sub}</div>` : ""}
-    <div class="u-top"><span class="u-emoji">${u.emoji}</span><span class="eyebrow" style="margin:0">Bab ${u.no} · ${u.jenis}</span></div>
+    <div class="u-top"><span class="u-emoji">${u.emoji}</span><span class="eyebrow" style="margin:0">Unit ${u.no} · ${u.jenis}</span></div>
     <h2 class="u-title">${u.judul}</h2>
     <p class="u-desk">${u.desk}</p>
     <div class="u-tags">${u.tags.map(t => `<span class="glass clear">${t}</span>`).join("")}</div>
     <div class="panel glass clear"><div class="acts">${u.aktivitas.map(a => `<button class="act" onclick="openAct('${a.id}', this)"><span class="i">${a.ic}</span><span><b>${a.t}</b><small>${a.note || ""}</small></span>${best[a.id] != null ? `<span class="best">⭐ ${best[a.id]}</span>` : ""}</button>`).join("")}</div></div>
-    <div class="u-row"><button class="cta" onclick="openMateri('${k}', this)">Ringkasan Materi →</button></div>
+    <div class="u-row"><button class="cta" onclick="openMateri('${k}', this)">Read the Summary →</button></div>
     <div class="u-row"><span class="lbl">🎬 Video</span>${u.video.concat(u.inspirasi || []).map(([t, url]) => `<a class="chip glass clear" href="${url}" target="_blank" rel="noopener">▶ ${t}</a>`).join("")}</div>
   </section>`;
 }
@@ -103,7 +103,7 @@ function closeModal() {
 window.closeModal = closeModal;
 $("#mx").onclick = closeModal; $("#scrim").onclick = closeModal;
 addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
-window.openMateri = (k, el) => openModal(`📖 Ringkasan Materi · Unit ${+L.units[k].no}`, `<div class="mat">${L.units[k].materi}</div>`, el);
+window.openMateri = (k, el) => openModal(`📖 Summary · Unit ${+L.units[k].no}`, `<div class="mat">${L.units[k].materi}</div>`, el);
 
 let cur;
 window.openAct = (id, el) => { if (el) origin = el.getBoundingClientRect(); cur = ACT[id]; ({ quiz: Quiz, game: Game, sort: Sort, classify: Classify, fill: Fill })[cur.type].start(); };
@@ -113,10 +113,10 @@ function finish(score, extra = "") {
   const nama = store.get("lab-nama", "");
   const msg = score >= 90 ? "Excellent! 🏆" : score >= 75 ? "Great job! 🎉" : score >= 50 ? "Good effort! 💪" : "Keep practicing! 🌱";
   $("#mb").innerHTML = `<div class="result"><div class="big">${score}</div><p><b>${msg}</b></p>${extra}
-    <div class="cert"><input class="name" id="nm" placeholder="Tulis nama & kelasmu (mis. Rina · XI HJ 7)" value="${esc(nama)}">
-      <div>📌 <b>${esc(cur.t)}</b></div><div>Nilai: <b>${score}</b> · ${new Date().toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })}</div>
-      <small style="color:var(--muted)">Screenshot kartu ini untuk dikirim ke guru.</small></div>
-    <div class="row" style="justify-content:center"><button class="btn" onclick="openAct('${cur.id}')">Ulangi</button><button class="btn alt" onclick="closeModal()">Selesai</button></div></div>`;
+    <div class="cert"><input class="name" id="nm" placeholder="Your name & class (e.g. Rina · XI HJ 7)" value="${esc(nama)}">
+      <div>📌 <b>${esc(cur.t)}</b></div><div>Score: <b>${score}</b> · ${new Date().toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" })}</div>
+      <small style="color:var(--muted)">Take a screenshot and send it to your teacher.</small></div>
+    <div class="row" style="justify-content:center"><button class="btn" onclick="openAct('${cur.id}')">Try again</button><button class="btn alt" onclick="closeModal()">Done</button></div></div>`;
   $("#nm").oninput = e => store.set("lab-nama", e.target.value);
 }
 
@@ -126,13 +126,13 @@ const Quiz = {
   show() {
     const [q, opts, ans] = this.qs[this.i];
     openModal(`${cur.ic} ${cur.t}`, `<div class="prog"><i style="width:${this.i / this.qs.length * 100}%"></i></div>
-      <p class="intro">Soal ${this.i + 1} dari ${this.qs.length}</p><p class="q">${esc(q)}</p>
+      <p class="intro">Question ${this.i + 1} of ${this.qs.length}</p><p class="q">${esc(q)}</p>
       ${opts.map((o, j) => `<button class="opt" data-j="${j}">${String.fromCharCode(65 + j)}. ${esc(o)}</button>`).join("")}<div class="fb" id="fb"></div><div class="row" id="nx"></div>`);
     document.querySelectorAll(".opt").forEach(b => b.onclick = () => {
       const j = +b.dataset.j; document.querySelectorAll(".opt").forEach(x => { x.disabled = true; if (+x.dataset.j === ans) x.classList.add("right"); });
-      if (j === ans) { this.ok++; $("#fb").innerHTML = "✅ Correct!"; } else { b.classList.add("wrong"); $("#fb").innerHTML = "❌ Not quite. Jawaban benar ditandai hijau."; }
-      $("#nx").innerHTML = `<button class="btn">${this.i + 1 < this.qs.length ? "Lanjut →" : "Lihat nilai"}</button>`;
-      $("#nx button").onclick = () => { this.i++; this.i < this.qs.length ? this.show() : finish(Math.round(this.ok / this.qs.length * 100), `<p>Benar ${this.ok} dari ${this.qs.length} soal</p>`); };
+      if (j === ans) { this.ok++; $("#fb").innerHTML = "✅ Correct!"; } else { b.classList.add("wrong"); $("#fb").innerHTML = "❌ Not quite. The right answer is in green."; }
+      $("#nx").innerHTML = `<button class="btn">${this.i + 1 < this.qs.length ? "Next →" : "See my score"}</button>`;
+      $("#nx button").onclick = () => { this.i++; this.i < this.qs.length ? this.show() : finish(Math.round(this.ok / this.qs.length * 100), `<p>${this.ok} of ${this.qs.length} correct</p>`); };
     });
   }
 };
@@ -144,7 +144,7 @@ const Game = {
   show() {
     const [q, opts, ans] = this.qs[this.i]; this.ans = ans;
     openModal(`${cur.ic} ${cur.t}`, `<div class="game"><div>
-      <p class="intro">Pertanyaan ${this.i + 1} · hadiah <b>${PRIZE[this.i]}</b> poin</p><p class="q">${esc(q)}</p>
+      <p class="intro">Question ${this.i + 1} · <b>${PRIZE[this.i]}</b> points</p><p class="q">${esc(q)}</p>
       ${opts.map((o, j) => `<button class="opt" data-j="${j}">${String.fromCharCode(65 + j)}. ${esc(o)}</button>`).join("")}
       <div class="row"><button class="lifeline" id="ff" ${this.ff ? "" : "disabled"}>50 : 50</button></div><div class="fb" id="fb"></div></div>
       <ol class="ladder">${PRIZE.slice(0, this.qs.length).map((p, k) => `<li class="${k === this.i ? "now" : k < this.i ? "done" : ""}">${k + 1}. ${p}</li>`).join("")}</ol></div>`);
@@ -154,7 +154,7 @@ const Game = {
       const win = +b.dataset.j === ans; if (!win) b.classList.add("wrong");
       setTimeout(() => {
         if (win && this.i + 1 < this.qs.length) { this.i++; this.show(); }
-        else finish(Math.round((this.i + (win ? 1 : 0)) / this.qs.length * 100), win ? `<p>🏆 Kamu menjadi <b>English Master</b>!</p>` : `<p>Kamu berhenti di pertanyaan ${this.i + 1}. Coba lagi!</p>`);
+        else finish(Math.round((this.i + (win ? 1 : 0)) / this.qs.length * 100), win ? `<p>🏆 You are an <b>English Master</b>!</p>` : `<p>You stopped at question ${this.i + 1}. Try again!</p>`);
       }, 1100);
     });
   }
@@ -168,16 +168,16 @@ const Sort = {
     this.show();
   },
   show(checked) {
-    openModal(`${cur.ic} ${cur.t}`, `<p class="intro">${cur.intro} Gunakan tombol ▲▼ untuk memindahkan.</p>
+    openModal(`${cur.ic} ${cur.t}`, `<p class="intro">${cur.intro} Use ▲▼ to move them.</p>
       <ul class="sort">${this.order.map((v, i) => { const [lab, txt] = split(cur.items[v]);
         return `<li class="${checked ? (v === i ? "right" : "wrong") : ""}"><span class="t">${checked && lab ? `<span class="tag">${esc(lab)}</span>` : ""}${esc(txt)}</span>
         <span class="mv"><button data-u="${i}" ${checked ? "disabled" : ""}>▲</button><button data-d="${i}" ${checked ? "disabled" : ""}>▼</button></span></li>`; }).join("")}</ul>
-      <div class="row">${checked ? "" : `<button class="btn" id="ck">Periksa</button>`}</div>`);
+      <div class="row">${checked ? "" : `<button class="btn" id="ck">Check</button>`}</div>`);
     document.querySelectorAll("[data-u]").forEach(b => b.onclick = () => { const i = +b.dataset.u; if (i > 0) { [this.order[i - 1], this.order[i]] = [this.order[i], this.order[i - 1]]; this.show(); } });
     document.querySelectorAll("[data-d]").forEach(b => b.onclick = () => { const i = +b.dataset.d; if (i < this.order.length - 1) { [this.order[i + 1], this.order[i]] = [this.order[i], this.order[i + 1]]; this.show(); } });
     if (!checked) $("#ck").onclick = () => {
       this.show(true); const ok = this.order.filter((v, i) => v === i).length;
-      $(".row").innerHTML = `<p class="fb">${ok === this.order.length ? "✅ Urutan sempurna!" : `Posisi benar: ${ok} dari ${this.order.length}. Lihat label untuk belajar.`}</p><button class="btn" id="sc">Lihat nilai</button>`;
+      $(".row").innerHTML = `<p class="fb">${ok === this.order.length ? "✅ Perfect order!" : `${ok} of ${this.order.length} in the right place. Check the labels.`}</p><button class="btn" id="sc">See my score</button>`;
       $("#sc").onclick = () => finish(Math.round(ok / this.order.length * 100));
     };
   }
@@ -188,17 +188,17 @@ const Classify = {
   start() {
     this.items = shuffle(cur.items); this.pick = {};
     openModal(`${cur.ic} ${cur.t}`, `<p class="intro">${cur.intro}</p>${this.items.map(([txt], i) => `<div class="cl" id="c${i}"><div>${esc(txt)}</div><div class="g">${cur.groups.map((g, j) => `<button data-i="${i}" data-j="${j}">${esc(g)}</button>`).join("")}</div></div>`).join("")}
-      <div class="row"><button class="btn" id="ck">Periksa</button></div>`);
+      <div class="row"><button class="btn" id="ck">Check</button></div>`);
     document.querySelectorAll(".cl .g button").forEach(b => b.onclick = () => {
       const i = +b.dataset.i; this.pick[i] = +b.dataset.j;
       document.querySelectorAll(`button[data-i="${i}"]`).forEach(x => x.classList.toggle("pick", x === b));
     });
     $("#ck").onclick = () => {
-      if (Object.keys(this.pick).length < this.items.length && !confirm("Masih ada yang belum dipilih. Periksa sekarang?")) return;
+      if (Object.keys(this.pick).length < this.items.length && !confirm("Some items are not done yet. Check anyway?")) return;
       let ok = 0;
       this.items.forEach(([, g], i) => { const r = this.pick[i] === g; if (r) ok++; const el = $("#c" + i); el.classList.add(r ? "right" : "wrong");
-        if (!r) el.insertAdjacentHTML("beforeend", `<small>Jawaban: <b>${esc(cur.groups[g])}</b></small>`); el.querySelectorAll("button").forEach(x => x.disabled = true); });
-      $(".row").innerHTML = `<p class="fb">Benar ${ok} dari ${this.items.length}</p><button class="btn" id="sc">Lihat nilai</button>`;
+        if (!r) el.insertAdjacentHTML("beforeend", `<small>Answer: <b>${esc(cur.groups[g])}</b></small>`); el.querySelectorAll("button").forEach(x => x.disabled = true); });
+      $(".row").innerHTML = `<p class="fb">${ok} of ${this.items.length} correct</p><button class="btn" id="sc">See my score</button>`;
       $("#sc").onclick = () => finish(Math.round(ok / this.items.length * 100));
     };
   }
@@ -209,12 +209,12 @@ const Fill = {
   start() {
     openModal(`${cur.ic} ${cur.t}`, `<p class="intro">${cur.intro}</p>${cur.soal.map(([q], i) => { const [a, b] = q.split("___");
       return `<div class="fi" id="f${i}"><span>${i + 1}. ${esc(a)}</span><input id="in${i}" autocomplete="off" autocapitalize="off"><span>${esc(b || "")}</span></div>`; }).join("")}
-      <div class="row"><button class="btn" id="ck">Periksa</button></div>`);
+      <div class="row"><button class="btn" id="ck">Check</button></div>`);
     $("#ck").onclick = () => {
       let ok = 0;
       cur.soal.forEach(([, ans], i) => { const v = $("#in" + i).value.trim().toLowerCase(); const r = v === ans; if (r) ok++;
         $("#f" + i).classList.add(r ? "right" : "wrong"); $("#in" + i).disabled = true; if (!r) $("#f" + i).insertAdjacentHTML("beforeend", `<small>→ <b>${ans}</b></small>`); });
-      $(".row").innerHTML = `<p class="fb">Benar ${ok} dari ${cur.soal.length}</p><button class="btn" id="sc">Lihat nilai</button>`;
+      $(".row").innerHTML = `<p class="fb">${ok} of ${cur.soal.length} correct</p><button class="btn" id="sc">See my score</button>`;
       $("#sc").onclick = () => finish(Math.round(ok / cur.soal.length * 100));
     };
   }
