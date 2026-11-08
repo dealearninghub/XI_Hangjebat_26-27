@@ -86,7 +86,7 @@ async function route() {
   $("#wt").textContent = a.t; mark();
   const isi = $("#isi"); isi.classList.toggle("frame", !!a.frame); isi.scrollTop = 0;
   const sw = RINGKAS[id] ? (full ? `<a href="#${id}">✦ Ringkas</a>` : `<a href="#${id}/lengkap">📄<span class="vl"> Versi</span> lengkap</a>`) : "";
-  $("#tba").innerHTML = a.f ? `${sw}${id.startsWith("rpm") ? `<button class="hide-m" onclick="document.querySelectorAll('details').forEach(d=>d.open=!d.open)">Buka/Tutup</button>` : ""}
+  $("#tba").innerHTML = a.f ? `${sw}${(id.startsWith("rpm") || id === "atp") ? `<button class="hide-m" onclick="document.querySelectorAll('details').forEach(d=>d.open=!d.open)">Buka/Tutup</button>` : ""}
       <button class="hide-m" onclick="print()">Cetak</button><a class="pri" href="unduh/${a.f}" download>Unduh</a>`
     : a.frame ? `<a class="pri" href="${a.frame}" target="_blank">Buka penuh ↗</a>` : "";
   if (id === "biodata") { isi.innerHTML = BIODATA(); return; }
