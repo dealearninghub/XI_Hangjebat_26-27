@@ -1,208 +1,264 @@
-// ============================================================
-//  DATA WEBSITE PEMBELAJARAN — cukup ubah file ini saja.
-//  Sumber: Prota-Prosem & ATP Bahasa Inggris Tingkat Lanjut XI TP 2026/2027
-//  - video: tempel link YouTube biasa, kosongkan "" jika tidak ada
-//  - lampiran: [ ["Nama file", "link Google Drive"] ]
-//  - tugas: { isi: "...", batas: "2026-11-30", link: "link Google Form/Classroom" } atau null
-// ============================================================
-const SITUS = {
-  judul: "Kelas XI Hang Jebat",
-  tahun: "2026/2027",
-  guru: "Ms. Dea Arioktavia",
-  mapel: "Bahasa Inggris Tingkat Lanjut",
-  sambutan: "Welcome to our English class! Di sini kamu bisa mempelajari materi setiap bab, menonton video, mengerjakan kuis latihan, dan melihat tugas. Selamat belajar! 🌿",
-  pengumuman: [
-    { tanggal: "2026-11-08", isi: "Website kelas sudah aktif. Pelajari Bab 1 & Bab 2 untuk Semester 1, lalu coba kuisnya." }
+// =====================================================================
+//  LAB ENGLISH XI — DATA. Ubah isi di sini saja.
+//  Jenis aktivitas: quiz, game (Who Wants to Be an English Master), sort (urutkan), classify (kelompokkan), fill (isian)
+//  Link video/drive: ganti "url" dengan link Ibu sendiri kapan saja.
+// =====================================================================
+const yt = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
+
+const LAB = {
+  guru: "Dea Arioktavia, S.Pd",
+  jabatan: "Guru Bahasa Inggris Tingkat Lanjut · SMAN 1 Batam",
+  judul: "Lab English XI Lanjut",
+  tagline: "Di sini kita tidak hanya menghafal grammar, tetapi belajar bercerita, berargumen, dan berkreasi dengan bahasa Inggris melalui lab interaktif.",
+  heroLinks: [
+    { t: "🎬 Video Motivasi Sebelum Belajar", url: yt("motivational video for students learning english") },
+    { t: "❓ Why Should We Learn English?", url: yt("why learn english importance for students") },
+    { t: "🎵 English Song: Learn With Music", url: yt("english songs with lyrics for learning") },
+    { t: "🗣️ Daily Speaking Practice", url: yt("english speaking practice for high school students") }
   ],
-  bab: [
-    {
-      id: "bab1",
-      judul: "Bab 1: Are We Connected to Nature?",
-      ringkas: "Narrative Text bertema lingkungan · Menyimak, berbicara, berdiskusi & debat. Semester 1 · 45 JP",
-      tujuan: [
-        "Mengidentifikasi informasi tersurat dan tersirat (alur cerita, fakta, gagasan pokok) dari teks lisan/multimodal.",
-        "Membandingkan sudut pandang dan strategi argumen dari dua atau lebih teks lisan/multimodal.",
-        "Menyampaikan dan mempertahankan pendapat secara lisan dengan struktur klaim–data–warrant.",
-        "Mengevaluasi efektivitas argumen pembicara melalui critical response tertulis.",
-        "Merancang dan menyajikan debat terstruktur dengan strategi rebuttal dan data pendukung."
-      ],
-      video: "",
+  driveLinks: [
+    { t: "📁 Materi Semester Ganjil", url: "#" },
+    { t: "📁 Materi Semester Genap", url: "#" }
+  ],
+  perpustakaan: [
+    { t: "📚 British Council LearnEnglish Teens", url: "https://learnenglishteens.britishcouncil.org/" },
+    { t: "📖 StoryWeaver (cerita bergambar gratis)", url: "https://storyweaver.org.in/" },
+    { t: "📜 Project Gutenberg (dongeng klasik)", url: "https://www.gutenberg.org/" },
+    { t: "🏛️ Buku Kemendikbud (SIBI)", url: "https://buku.kemdikbud.go.id/" }
+  ],
+  semester: [
+    { nama: "Semester Ganjil", sub: "Fokus pada teks naratif: legenda lingkungan dan dongeng/fantasi", units: ["u1", "u2"] },
+    { nama: "Semester Genap", sub: "Fokus pada teks eksposisi: analytical dan hortatory exposition", units: ["u3", "u4"] }
+  ],
+  units: {
+    // ------------------------------------------------------------- UNIT 1
+    u1: {
+      no: "01", judul: "Are We Connected to Nature?", jenis: "Narrative Text · Legend", warna: "#2f9e44", emoji: "🌿",
+      desk: "Struktur generik legenda (orientation, complication, resolution, re-orientation), ciri-ciri legenda, kosakata lingkungan, simple past tense, action verbs, dan sequence words. Proyek: Picture-Sequencing Poster.",
+      tags: ["Legend", "Simple Past", "Sequence Words", "Poster Project"],
       materi: `
-        <h3>A. What is a Narrative Text?</h3>
-        <p>A <b>narrative text</b> tells a story (real or imaginary) to <b>entertain</b> readers and often to deliver a <b>moral value</b>. In this unit, the stories are about nature and the environment.</p>
-        <h3>B. Generic Structure</h3>
-        <ul>
-          <li><b>Orientation</b> – introduces the characters, time, and place.</li>
-          <li><b>Complication</b> – a problem or conflict appears.</li>
-          <li><b>Resolution</b> – the problem is solved (happily or sadly).</li>
-          <li><b>Coda/Reorientation</b> (optional) – the moral lesson or ending comment.</li>
-        </ul>
-        <h3>C. Language Features</h3>
-        <ul>
-          <li>Simple past tense: <i>The villagers <b>cut</b> the trees.</i></li>
-          <li>Action verbs: <i>ran, planted, destroyed</i></li>
-          <li>Time connectives: <i>once upon a time, then, after that, finally</i></li>
-          <li>Descriptive adjectives: <i>a <b>dense</b>, <b>green</b> forest</i></li>
-        </ul>
-        <h3>D. Explicit vs Implicit Information</h3>
-        <p><b>Explicit</b> information is written directly in the text. <b>Implicit</b> information must be inferred from clues, for example the author's purpose or the moral value.</p>
-        <h3>E. Expressing & Defending Opinions</h3>
-        <ul>
-          <li>Giving opinion: <i>In my opinion…, I believe…, From my point of view…</i></li>
-          <li>Agreeing: <i>I totally agree…, That's a good point…</i></li>
-          <li>Disagreeing: <i>I see your point, but…, I'm afraid I disagree…</i></li>
-          <li>Argument structure (Toulmin): <b>Claim</b> (pendapat) → <b>Data</b> (bukti) → <b>Warrant</b> (alasan yang menghubungkan bukti dengan klaim).</li>
-        </ul>
-        <h3>F. Debate & Rebuttal</h3>
-        <p>In a debate, the <b>affirmative</b> team supports the motion and the <b>negative</b> team opposes it. A <b>rebuttal</b> responds to the opponent's argument: <i>"My opponent said…, however, the data shows…"</i></p>
-        <p><b>Key vocabulary:</b> ecosystem, habitat, deforestation, pollution, biodiversity, sustainable, extinction.</p>
-      `,
-      lampiran: [],
-      kuis: [
-        { soal: "What is the main purpose of a narrative text?", pilihan: ["To describe a thing in detail", "To entertain and give a moral lesson", "To persuade readers to do something", "To explain how something works"], benar: 1, bahas: "Narrative text bertujuan menghibur pembaca dan biasanya mengandung pesan moral." },
-        { soal: "The part of a narrative that introduces the characters, time and place is called…", pilihan: ["Complication", "Resolution", "Orientation", "Coda"], benar: 2, bahas: "Orientation memperkenalkan tokoh, waktu, dan tempat." },
-        { soal: "\"Suddenly, a big fire burned the forest and the animals lost their homes.\" This sentence is most likely part of the…", pilihan: ["Orientation", "Complication", "Resolution", "Reorientation"], benar: 1, bahas: "Munculnya masalah/konflik (kebakaran hutan) adalah bagian complication." },
-        { soal: "Which tense is mostly used in a narrative text?", pilihan: ["Simple present tense", "Simple future tense", "Simple past tense", "Present continuous tense"], benar: 2, bahas: "Cerita terjadi di masa lampau, jadi menggunakan simple past tense." },
-        { soal: "\"I see your point, but I don't think plastic bags should be banned completely.\" This expression is used to…", pilihan: ["Agree politely", "Disagree politely", "Ask for clarification", "Give a conclusion"], benar: 1, bahas: "\"I see your point, but…\" adalah ungkapan tidak setuju secara sopan." },
-        { soal: "In the Toulmin model, the evidence that supports a claim is called…", pilihan: ["Warrant", "Rebuttal", "Data", "Motion"], benar: 2, bahas: "Claim = pendapat, Data = bukti, Warrant = alasan yang menghubungkan keduanya." }
+        <h3>What is a Legend?</h3><p>A <b>legend</b> is a traditional narrative story about the origin of a place, often with magical elements and a moral value. Examples: <i>The Legend of the Weeping Lake</i>, <i>The Legend of Telaga Lestari</i>, <i>The Legend of Pulau Setokok (Batam)</i>.</p>
+        <h3>Generic Structure</h3><ul><li><b>Orientation</b>: who, when, where</li><li><b>Complication</b>: the problem/conflict</li><li><b>Resolution</b>: how the problem ends</li><li><b>Re-orientation/Coda</b>: moral value or closing</li></ul>
+        <h3>Characteristics of a Legend</h3><ul><li>Magical/supernatural elements</li><li>Explains the origin of a place (etiological function)</li><li>Real setting</li><li>Moral message</li><li>Passed down orally</li></ul>
+        <h3>Language Features</h3><ul><li><b>Simple past tense</b>: lived, cried, became, went</li><li><b>Action verbs</b>: cut, ran, planted, destroyed</li><li><b>Sequence words</b>: once upon a time, one day, then, after that, finally</li></ul>
+        <p><b>Vocabulary:</b> ecosystem, habitat, deforestation, pollution, flood, drought, biodiversity, sustainable.</p>`,
+      aktivitas: [
+        { id: "u1-asesmen", t: "Asesmen Awal Unit 1", ic: "🧭", type: "quiz", note: "Cek kemampuan awalmu", soal: [
+          ["A story about the origin of a place, usually with magical elements, is called a…", ["Fable", "Legend", "Biography", "News item"], 1],
+          ["Which word is the past form of \"go\"?", ["goed", "gone", "went", "going"], 2],
+          ["\"Once upon a time\" is usually found in the…", ["Orientation", "Complication", "Resolution", "Coda"], 0],
+          ["Cutting down forests on a large scale is called…", ["Pollution", "Deforestation", "Recycling", "Erosion"], 1],
+          ["What do you usually find at the end of a legend?", ["A list of materials", "A moral value", "A thesis statement", "A recommendation"], 1],
+          ["Choose the sequence word:", ["beautiful", "forest", "afterwards", "angry"], 2]
+        ]},
+        { id: "u1-sort", t: "Lab Story Structure", ic: "🧩", type: "sort", note: "Urutkan bagian legenda", intro: "Susun potongan cerita \"The Legend of Telaga Lestari\" (versi singkat) menjadi urutan yang benar.", items: [
+          "Orientation — Long ago, a small village stood near a green forest. The villagers lived happily and took care of the trees.",
+          "Complication — One day, greedy people came and cut down the trees. The river dried up and the animals lost their homes.",
+          "Complication — A great drought hit the village. The people cried and prayed for water.",
+          "Resolution — A kind girl planted seeds every day. Finally, rain fell and a clear lake appeared where she cried.",
+          "Re-orientation — The people named it Telaga Lestari and promised to protect nature forever."
+        ]},
+        { id: "u1-fill", t: "Lab Past Tense Builder", ic: "🔨", type: "fill", note: "Ketik bentuk V2", intro: "Tulis bentuk lampau (V2) dari kata kerja dalam kurung.", soal: [
+          ["The villagers (live) ___ near the forest.", "lived"], ["One day, a big storm (come) ___.", "came"], ["The old man (cut) ___ the tallest tree.", "cut"],
+          ["The girl (cry) ___ all night.", "cried"], ["The water (become) ___ a lake.", "became"], ["They (plant) ___ new trees.", "planted"],
+          ["The animals (run) ___ away from the fire.", "ran"], ["The king (find) ___ a magic stone.", "found"]
+        ]},
+        { id: "u1-classify", t: "Lab Word Explorers", ic: "🔤", type: "classify", note: "Kelompokkan kata", intro: "Kelompokkan setiap kata ke kategori yang tepat.", groups: ["Action Verb", "Sequence Word", "Environment Noun"], items: [
+          ["planted", 0], ["destroyed", 0], ["ran", 0], ["first", 1], ["after that", 1], ["finally", 1], ["habitat", 2], ["drought", 2], ["ecosystem", 2]
+        ]},
+        { id: "u1-game", t: "Game: English Master Unit 1", ic: "🎮", type: "game", note: "Jawab 8 soal, raih trofi!", soal: [
+          ["Which part introduces the characters?", ["Orientation", "Complication", "Resolution", "Coda"], 0],
+          ["The past form of \"see\" is…", ["seed", "saw", "seen", "sees"], 1],
+          ["\"The river dried up and the fish died.\" This is part of the…", ["Orientation", "Complication", "Coda", "Title"], 1],
+          ["A legend often explains…", ["how to cook food", "the origin of a place", "today's weather", "a scientific fact"], 1],
+          ["Choose the correct sentence.", ["She cry yesterday.", "She cried yesterday.", "She crying yesterday.", "She cries yesterday."], 1],
+          ["\"Finally\" is used to show…", ["the first event", "the last event", "a reason", "a contrast"], 1],
+          ["The moral value of a legend about cutting trees is probably…", ["Trees are useless", "We must protect nature", "Rivers are dangerous", "Money is everything"], 1],
+          ["Which is NOT a characteristic of a legend?", ["Magical elements", "Real setting", "Moral value", "Statistical data"], 3]
+        ]},
+        { id: "u1-latihan", t: "Latihan Unit 1", ic: "📝", type: "quiz", note: "Latihan soal campuran", soal: [
+          ["\"Many years ago, there lived a poor fisherman in Batam.\" The sentence is the…", ["Orientation", "Complication", "Resolution", "Re-orientation"], 0],
+          ["Which is an irregular verb?", ["walked", "planted", "took", "cleaned"], 2],
+          ["\"After that, the village was flooded.\" The sequence word is…", ["village", "after that", "was", "flooded"], 1],
+          ["Implicit information is…", ["written directly", "inferred from clues", "the title", "a vocabulary list"], 1],
+          ["The purpose of a picture-sequencing poster is to…", ["list prices", "tell a story through ordered pictures", "describe a person", "explain a process scientifically"], 1]
+        ]}
       ],
-      tugas: null
+      video: [
+        ["Narrative Text: Generic Structure", yt("narrative text generic structure legend")],
+        ["Simple Past Tense (Regular & Irregular)", yt("simple past tense regular irregular verbs explanation")],
+        ["Sequence Words in Stories", yt("sequence words in narrative text")],
+        ["Indonesian Legends in English", yt("indonesian legend story in english")]
+      ],
+      inspirasi: [["🎬 Inspirasi: Hutan Mangrove Batam", yt("hutan mangrove batam")]]
     },
-    {
-      id: "bab2",
-      judul: "Bab 2: Discovering Ourselves – Fairy Tale & Fantasy",
-      ringkas: "Membaca kritis teks narasi, eksposisi & diskusi · Annotated reading, text analysis, esai perbandingan. Semester 1 · 45 JP",
-      tujuan: [
-        "Mengidentifikasi informasi tersurat dan tersirat (makna implisit, tujuan penulis, sudut pandang) melalui graphic organizer atau annotated reading.",
-        "Menganalisis hubungan struktur teks, pilihan bahasa, dan tujuan komunikatif dalam text analysis minimal 200 kata.",
-        "Mengevaluasi keandalan sumber dan kredibilitas argumen (CRAAP test) dari dua teks multimodal.",
-        "Membandingkan penyajian isu dalam teks tertulis dan multimodal dalam esai perbandingan minimal 250 kata.",
-        "Menyusun critical reading portfolio berisi 3 teks pilihan dengan anotasi dan refleksi."
-      ],
-      video: "",
+    // ------------------------------------------------------------- UNIT 2
+    u2: {
+      no: "02", judul: "Discovering Ourselves", jenis: "Narrative Text · Fairy Tale & Fantasy", warna: "#8e44ff", emoji: "🦄",
+      desk: "Elemen cerita (tokoh, latar, konflik internal & eksternal, resolusi), perubahan tokoh, noun phrases, adverbia, reduksi klausa adjektiva, reported speech, dan Coda. Proyek: Motion Comic \"Discovery of Ourselves\".",
+      tags: ["Fairy Tale", "Story Elements", "Reported Speech", "Motion Comic"],
       materi: `
-        <h3>A. Fairy Tales & Fantasy Stories</h3>
-        <p>Fairy tales and fantasy stories are narratives with <b>magical elements</b>, imaginary worlds, and characters such as fairies, talking animals, or heroes. Behind the magic, they often carry messages about <b>identity, courage, and self-discovery</b>.</p>
-        <h3>B. Annotated Reading</h3>
-        <p>Annotating means writing notes while reading. Useful annotation marks:</p>
-        <ul>
-          <li><b>Underline</b> main ideas</li>
-          <li><b>?</b> for confusing parts</li>
-          <li><b>!</b> for surprising information</li>
-          <li>Short comments in the margin: <i>"The author is criticizing…"</i></li>
-        </ul>
-        <h3>C. Graphic Organizers</h3>
-        <ul><li><b>Story map</b> – characters, setting, problem, events, solution</li><li><b>T-chart</b> – compare two things (e.g., explicit vs implicit)</li><li><b>Fishbone</b> – causes and effects of a problem</li></ul>
-        <h3>D. Author's Purpose & Point of View</h3>
-        <p>Ask: <i>Why did the author write this? To entertain, inform, or persuade? From whose eyes is the story told?</i> (first person "I" or third person "he/she/they").</p>
-        <h3>E. Evaluating Sources – The CRAAP Test</h3>
-        <ul>
-          <li><b>C</b>urrency – Is the information up to date?</li>
-          <li><b>R</b>elevance – Is it related to your topic?</li>
-          <li><b>A</b>uthority – Who is the author? Are they an expert?</li>
-          <li><b>A</b>ccuracy – Is it supported by evidence?</li>
-          <li><b>P</b>urpose – Is it written to inform, sell, or persuade? Is there bias?</li>
-        </ul>
-        <h3>F. Comparison Essay</h3>
-        <p>Two ways to organize: <b>Block method</b> (discuss text A fully, then text B) or <b>Point-by-point</b> (compare A and B on each point). Useful language: <i>similarly, likewise, in contrast, whereas, on the other hand.</i></p>
-      `,
-      lampiran: [],
-      kuis: [
-        { soal: "Which element is typical of fantasy stories?", pilihan: ["Statistical data", "Magical or imaginary elements", "Step-by-step instructions", "Scientific explanation"], benar: 1, bahas: "Fantasy stories selalu mengandung unsur magis/imajinatif." },
-        { soal: "A graphic organizer that shows characters, setting, problem, and solution is a…", pilihan: ["Fishbone diagram", "T-chart", "Story map", "Venn diagram"], benar: 2, bahas: "Story map memetakan unsur cerita: tokoh, latar, masalah, peristiwa, solusi." },
-        { soal: "In the CRAAP test, \"Authority\" asks…", pilihan: ["Is the information new?", "Who wrote it and are they qualified?", "Is the text long enough?", "Is the topic interesting?"], benar: 1, bahas: "Authority = siapa penulis/sumbernya dan apakah kredibel." },
-        { soal: "\"Text A describes the forest as magical, ____ Text B describes it as dangerous.\" The best connector is…", pilihan: ["whereas", "because", "therefore", "for example"], benar: 0, bahas: "\"Whereas\" menunjukkan kontras antara dua hal." },
-        { soal: "Information that must be inferred from clues in the text is called…", pilihan: ["Explicit information", "Implicit information", "Main idea", "Orientation"], benar: 1, bahas: "Informasi tersirat (implicit) harus disimpulkan dari petunjuk dalam teks." }
+        <h3>Fairy Tale & Fantasy</h3><p>Stories with magical worlds and characters. Behind the magic, they show how a character <b>changes and discovers who they are</b>.</p>
+        <h3>Story Elements</h3><ul><li><b>Characters</b> (protagonist, antagonist)</li><li><b>Setting</b> (time & place)</li><li><b>Conflict</b>: <i>internal</i> (inside the character: fear, doubt) and <i>external</i> (with others, nature, society)</li><li><b>Resolution</b> & <b>Coda</b> (lesson learned)</li></ul>
+        <h3>Language Features</h3><ul><li><b>Noun phrase</b>: a brave young princess</li><li><b>Adverbs</b>: quickly, bravely, suddenly</li><li><b>Reduced adjective clause</b>: the girl <i>(who was) sitting</i> by the window → the girl sitting by the window</li><li><b>Reported speech</b>: "I am lost," she said. → She said that she was lost.</li></ul>`,
+      aktivitas: [
+        { id: "u2-asesmen", t: "Asesmen Awal Unit 2", ic: "🧭", type: "quiz", note: "Cek kemampuan awalmu", soal: [
+          ["A conflict that happens inside a character's mind is called…", ["External conflict", "Internal conflict", "Setting", "Orientation"], 1],
+          ["\"A brave young princess\" is an example of a…", ["Verb phrase", "Noun phrase", "Adverb", "Conjunction"], 1],
+          ["Which word is an adverb?", ["happy", "happiness", "happily", "happier"], 2],
+          ["The part of a story that tells the lesson learned is the…", ["Coda", "Orientation", "Complication", "Title"], 0],
+          ["Fairy tales usually contain…", ["statistics", "magical elements", "instructions", "news reports"], 1]
+        ]},
+        { id: "u2-classify", t: "Lab Conflict Detector", ic: "🧠", type: "classify", note: "Internal atau eksternal?", intro: "Tentukan apakah konflik berikut termasuk internal atau eksternal.", groups: ["Internal Conflict", "External Conflict"], items: [
+          ["Mira is afraid she is not good enough to join the team.", 0], ["Leo cannot decide whether to tell the truth.", 0], ["The prince doubts his own courage.", 0],
+          ["A dragon attacks the village.", 1], ["Two friends argue about a secret.", 1], ["A storm destroys the girl's house.", 1]
+        ]},
+        { id: "u2-reported", t: "Lab Reported Speech", ic: "💬", type: "quiz", note: "Ubah kalimat langsung", soal: [
+          ["\"I am happy,\" said Ana. → Ana said that she ___ happy.", ["is", "was", "were", "be"], 1],
+          ["\"I can fly,\" said the fairy. → The fairy said that she ___ fly.", ["can", "could", "will", "may"], 1],
+          ["\"I will help you,\" he told me. → He told me that he ___ help me.", ["will", "would", "shall", "can"], 1],
+          ["\"I lost my way,\" said the boy. → The boy said that he ___ his way.", ["lost", "had lost", "loses", "has lost"], 1],
+          ["\"We are in the forest,\" they said. → They said that they ___ in the forest.", ["are", "were", "was", "be"], 1]
+        ]},
+        { id: "u2-sort", t: "Lab Motion Comic Planner", ic: "🎞️", type: "sort", note: "Urutkan panel komik", intro: "Urutkan panel motion comic \"Discovery of Ourselves\" sesuai struktur empat bagian.", items: [
+          "Orientation — Rina, a shy girl, loved drawing but never showed anyone her work.",
+          "Complication — Her class held an art competition, but she was afraid her friends would laugh at her.",
+          "Resolution — Encouraged by her teacher, Rina joined and her drawing won second place.",
+          "Coda — Rina learned that believing in herself was the first step to growing up."
+        ]},
+        { id: "u2-game", t: "Game: English Master Unit 2", ic: "🎮", type: "game", note: "Jawab 8 soal, raih trofi!", soal: [
+          ["The main character of a story is called the…", ["antagonist", "protagonist", "narrator", "audience"], 1],
+          ["\"Suddenly\" is a(n)…", ["noun", "adjective", "adverb", "verb"], 2],
+          ["\"The boy wearing a red hat\" contains a…", ["reduced adjective clause", "question tag", "passive voice", "conditional"], 0],
+          ["Where and when a story happens is the…", ["plot", "setting", "theme", "coda"], 1],
+          ["A character fighting a monster is an example of…", ["internal conflict", "external conflict", "resolution", "orientation"], 1],
+          ["\"I'm tired,\" she said. → She said that she ___ tired.", ["is", "was", "am", "be"], 1],
+          ["A motion comic is…", ["a printed newspaper", "a digital comic with movement and sound", "a song", "a speech"], 1],
+          ["Fairy tales often teach us about…", ["math formulas", "growing up and values", "weather reports", "recipes"], 1]
+        ]},
+        { id: "u2-latihan", t: "Latihan Unit 2", ic: "📝", type: "quiz", note: "Latihan soal campuran", soal: [
+          ["Which is a noun phrase?", ["run quickly", "a beautiful golden castle", "very fast", "and then"], 1],
+          ["\"The girl who was sitting alone\" can be reduced to…", ["The girl sat alone", "The girl sitting alone", "The girl sits alone", "The alone girl sitting"], 1],
+          ["Character change means…", ["the character's name changes", "the character grows or learns something", "the setting moves", "the story ends"], 1],
+          ["In which part does the main problem appear?", ["Orientation", "Complication", "Coda", "Title"], 1]
+        ]}
       ],
-      tugas: null
+      video: [
+        ["Elements of a Story", yt("elements of a story characters setting conflict")],
+        ["Internal vs External Conflict", yt("internal and external conflict explanation")],
+        ["Reported Speech", yt("reported speech explanation examples")],
+        ["How to Make a Motion Comic", yt("how to make a motion comic tutorial")]
+      ],
+      inspirasi: [["🎬 Inspirasi: Short Animated Films", yt("short animated film self discovery")]]
     },
-    {
-      id: "bab3",
-      judul: "Bab 3: The Importance of Environmental Protection",
-      ringkas: "Analytical Exposition · Menulis narasi, eksposisi & diskusi, peer review, writing portfolio. Semester 2 · 45 JP",
-      tujuan: [
-        "Menyusun teks narasi singkat (250–350 kata) dengan struktur orientasi–komplikasi–resolusi.",
-        "Menulis teks eksposisi argumentatif (350–500 kata) dengan struktur tesis–argumen–restatement dan minimal 3 argumen.",
-        "Menulis teks diskusi (400–500 kata) yang memuat argumen pro dan kontra secara seimbang.",
-        "Mengevaluasi dan merevisi tulisan teman (peer review) dengan rubrik dan umpan balik konstruktif.",
-        "Menyusun writing portfolio dan refleksi perkembangan diri sebagai penulis."
-      ],
-      video: "",
+    // ------------------------------------------------------------- UNIT 3
+    u3: {
+      no: "03", judul: "The Importance of Environmental Protection", jenis: "Analytical Exposition", warna: "#0a84ff", emoji: "🌍",
+      desk: "Struktur thesis–arguments–reiteration, kosakata akademik lingkungan, simple present tense, causal conjunctions (thus, therefore, due to), argumen berdata Claim–Evidence–Reasoning, dan kredibilitas sumber. Proyek: Green Street Journalism.",
+      tags: ["Thesis", "CER", "Causal Conjunctions", "Green Journalism"],
       materi: `
-        <h3>A. What is an Analytical Exposition?</h3>
-        <p>An <b>analytical exposition</b> is a text that presents the writer's <b>opinion</b> about an issue and supports it with <b>arguments</b>, to convince readers that the issue is important.</p>
-        <h3>B. Generic Structure</h3>
-        <ul>
-          <li><b>Thesis</b> – the writer's position/opinion. <i>"Protecting the environment is essential for our future."</i></li>
-          <li><b>Arguments</b> – at least three reasons with supporting data or facts.</li>
-          <li><b>Reiteration (Restatement)</b> – restates the thesis in different words as a conclusion.</li>
-        </ul>
-        <h3>C. Language Features</h3>
-        <ul>
-          <li>Simple present tense: <i>Plastic waste <b>pollutes</b> the ocean.</i></li>
-          <li>Thinking verbs: <i>believe, think, consider</i></li>
-          <li>Connectives: <i>firstly, secondly, moreover, furthermore, in addition, therefore</i></li>
-          <li>Emotive words: <i>alarming, crucial, devastating</i></li>
-        </ul>
-        <h3>D. Discussion Text</h3>
-        <p>A discussion text presents <b>both sides</b> of an issue: <b>Issue → Arguments for (pro) → Arguments against (contra) → Conclusion/Recommendation</b>. Use objective language: <i>Some people argue that…, On the other hand, others believe…</i></p>
-        <h3>E. Peer Review</h3>
-        <p>When reviewing a friend's draft, check: <b>structure</b>, <b>cohesion</b> (connectives), <b>argument</b> (data & logic), and <b>language</b> (grammar & vocabulary). Give feedback that is specific and kind: <i>"Your second argument is strong; adding a statistic would make it more convincing."</i></p>
-      `,
-      lampiran: [],
-      kuis: [
-        { soal: "The social function of an analytical exposition is to…", pilihan: ["Tell an entertaining story", "Persuade readers that an issue is important", "Describe a particular place", "Report an event in order"], benar: 1, bahas: "Analytical exposition meyakinkan pembaca bahwa suatu isu itu penting." },
-        { soal: "The generic structure of an analytical exposition is…", pilihan: ["Orientation – Complication – Resolution", "Thesis – Arguments – Reiteration", "Goal – Materials – Steps", "Identification – Description"], benar: 1, bahas: "Strukturnya: Thesis – Arguments – Reiteration." },
-        { soal: "\"In conclusion, it is clear that we must protect our forests.\" This sentence belongs to the…", pilihan: ["Thesis", "Argument", "Reiteration", "Orientation"], benar: 2, bahas: "Kalimat penutup yang menegaskan kembali pendapat penulis adalah reiteration." },
-        { soal: "Which connective is used to ADD another argument?", pilihan: ["However", "Moreover", "Although", "Whereas"], benar: 1, bahas: "\"Moreover\" menambahkan argumen. However/although/whereas menunjukkan pertentangan." },
-        { soal: "A discussion text is different from an analytical exposition because it…", pilihan: ["Uses past tense", "Presents both pro and contra arguments", "Has no conclusion", "Tells a story"], benar: 1, bahas: "Discussion text menyajikan argumen pro dan kontra secara seimbang." }
+        <h3>Analytical Exposition</h3><p>A text that presents the writer's <b>opinion</b> about an issue and supports it with <b>arguments</b>, to convince readers that the issue is important.</p>
+        <h3>Generic Structure</h3><ul><li><b>Thesis</b>: the writer's position</li><li><b>Arguments</b>: reasons supported by data</li><li><b>Reiteration</b>: restating the thesis</li></ul>
+        <h3>Claim–Evidence–Reasoning (CER)</h3><ul><li><b>Claim</b>: Plastic waste harms marine life.</li><li><b>Evidence</b>: Millions of tons of plastic enter the ocean every year.</li><li><b>Reasoning</b>: Animals mistake plastic for food, so they get sick or die.</li></ul>
+        <h3>Language Features</h3><ul><li>Simple present tense: Trees <b>absorb</b> carbon dioxide.</li><li>Causal conjunctions: <b>because, due to, therefore, thus, as a result</b></li><li>Academic vocabulary: biodiversity, sustainability, ecosystem, emission</li></ul>`,
+      aktivitas: [
+        { id: "u3-asesmen", t: "Asesmen Awal Unit 3", ic: "🧭", type: "quiz", note: "Cek kemampuan awalmu", soal: [
+          ["An analytical exposition aims to…", ["entertain readers", "persuade readers that an issue is important", "retell events", "describe a place"], 1],
+          ["The first part of an analytical exposition is the…", ["Thesis", "Reiteration", "Orientation", "Recommendation"], 0],
+          ["Which tense is mostly used?", ["Simple past", "Simple present", "Past perfect", "Future"], 1],
+          ["\"Therefore\" shows…", ["a result", "a time", "a place", "a comparison"], 0],
+          ["Biodiversity means…", ["the variety of living things", "a type of pollution", "a big city", "a recycling machine"], 0]
+        ]},
+        { id: "u3-sort", t: "Lab Text Structure", ic: "🧩", type: "sort", note: "Susun teks eksposisi", intro: "Susun paragraf berikut menjadi teks analytical exposition yang utuh.", items: [
+          "Thesis — Protecting the environment around our school is very important for everyone.",
+          "Argument 1 — Firstly, trees around the school reduce heat and make the air cleaner.",
+          "Argument 2 — Moreover, a clean environment prevents diseases such as dengue fever.",
+          "Argument 3 — Furthermore, a green school helps students feel calm and focus better.",
+          "Reiteration — Therefore, it is clear that protecting our school environment is essential."
+        ]},
+        { id: "u3-cer", t: "Lab CER Builder", ic: "🔬", type: "classify", note: "Claim, Evidence, atau Reasoning?", intro: "Tentukan apakah kalimat berikut adalah Claim, Evidence, atau Reasoning.", groups: ["Claim", "Evidence", "Reasoning"], items: [
+          ["Plastic bags should be reduced in our canteen.", 0], ["Mangrove forests must be protected.", 0],
+          ["Our class survey found 200 plastic bags thrown away in one week.", 1], ["Data shows mangroves can store up to four times more carbon than other forests.", 1],
+          ["Because plastic takes hundreds of years to decompose, it fills our land and sea.", 2], ["Since mangroves protect the coast from waves, losing them puts villages at risk.", 2]
+        ]},
+        { id: "u3-game", t: "Game: English Master Unit 3", ic: "🎮", type: "game", note: "Jawab 8 soal, raih trofi!", soal: [
+          ["The last part of an analytical exposition is the…", ["Thesis", "Argument", "Reiteration", "Resolution"], 2],
+          ["Choose the causal conjunction.", ["however", "due to", "although", "whereas"], 1],
+          ["\"Trees absorb carbon dioxide.\" The verb is in…", ["simple present", "simple past", "future", "past perfect"], 0],
+          ["A credible source is usually…", ["an anonymous meme", "a scientific journal or official report", "a random comment", "a rumor"], 1],
+          ["\"Moreover\" is used to…", ["add an argument", "show contrast", "end the text", "show time"], 0],
+          ["Evidence in an argument should be…", ["data or facts", "only feelings", "jokes", "questions"], 0],
+          ["Sustainability means…", ["using resources so they last for the future", "wasting energy", "building more factories", "cutting trees"], 0],
+          ["Green Street Journalism produces…", ["a song", "a written text and a campaign video", "a poem", "a comic"], 1]
+        ]},
+        { id: "u3-latihan", t: "Latihan Unit 3", ic: "📝", type: "quiz", note: "Latihan soal campuran", soal: [
+          ["\"In conclusion, we must keep our rivers clean.\" This is the…", ["Thesis", "Argument", "Reiteration", "Orientation"], 2],
+          ["Which sentence shows cause and effect?", ["The river is long.", "The river is polluted due to factory waste.", "I like rivers.", "Rivers are in Batam."], 1],
+          ["Which is the best evidence?", ["I think it is bad.", "Everyone knows it.", "A 2025 report shows air pollution rose by 20%.", "My friend said so."], 2],
+          ["The thesis contains…", ["the writer's main opinion", "a list of references", "a story ending", "a dialogue"], 0]
+        ]}
       ],
-      tugas: null
+      video: [
+        ["Analytical Exposition Text", yt("analytical exposition text explanation")],
+        ["Claim Evidence Reasoning (CER)", yt("claim evidence reasoning CER explained")],
+        ["Causal Conjunctions", yt("cause and effect conjunctions therefore thus due to")],
+        ["Evaluating Sources", yt("how to evaluate credible sources for students")]
+      ],
+      inspirasi: [["🎬 Inspirasi: Environmental Campaign Videos", yt("environmental campaign video students")]]
     },
-    {
-      id: "bab4",
-      judul: "Bab 4: Why Should We Live a Healthy Lifestyle?",
-      ringkas: "Hortatory Exposition (lintas mapel PJOK) · Teks persuasif & presentasi produk multimodal. Semester 2 · 45 JP",
-      tujuan: [
-        "Memahami fungsi, struktur, dan ciri kebahasaan hortatory exposition.",
-        "Merancang dan mempresentasikan produk multimodal (poster digital, video pendek, atau slide) tentang kesehatan dan pentingnya air bersih dengan strategi persuasi.",
-        "Mengintegrasikan keterampilan menyimak, berbicara, membaca, dan menulis dalam projek terpadu dan asesmen akhir."
-      ],
-      video: "",
+    // ------------------------------------------------------------- UNIT 4
+    u4: {
+      no: "04", judul: "Why Should We Live a Healthy Lifestyle?", jenis: "Hortatory Exposition · PJOK", warna: "#ff5e3a", emoji: "🍎",
+      desk: "Struktur thesis–arguments–recommendation, kosakata kesehatan (PJOK), modal verbs, bahasa persuasif, strategi logos–pathos–ethos, dan evaluasi rekomendasi. Proyek: Hortatory Podcast Station.",
+      tags: ["Recommendation", "Modals", "Logos-Pathos-Ethos", "Podcast"],
       materi: `
-        <h3>A. What is a Hortatory Exposition?</h3>
-        <p>A <b>hortatory exposition</b> persuades readers that something <b>should or should not be done</b>. It goes one step further than an analytical exposition by giving a <b>recommendation</b>.</p>
-        <h3>B. Generic Structure</h3>
-        <ul>
-          <li><b>Thesis</b> – states the issue/position. <i>"Drinking enough water is the key to a healthy life."</i></li>
-          <li><b>Arguments</b> – reasons and evidence.</li>
-          <li><b>Recommendation</b> – what readers should do. <i>"Therefore, we should drink at least 8 glasses of water a day."</i></li>
-        </ul>
-        <h3>C. Language Features</h3>
-        <ul>
-          <li>Modals: <i>should, must, ought to, need to</i></li>
-          <li>Imperatives / persuasive phrases: <i>Let's…, It is important to…, We need to…</i></li>
-          <li>Simple present tense and evaluative words: <i>essential, harmful, beneficial</i></li>
-          <li>Connectives: <i>firstly, besides, consequently, therefore</i></li>
-        </ul>
-        <h3>D. Analytical vs Hortatory</h3>
-        <ul>
-          <li><b>Analytical</b>: Thesis → Arguments → <b>Reiteration</b> (\"…is important.\")</li>
-          <li><b>Hortatory</b>: Thesis → Arguments → <b>Recommendation</b> (\"…we should…\")</li>
-        </ul>
-        <h3>E. Multimodal Project</h3>
-        <p>Create a digital poster, short video, or slide presentation about healthy lifestyle and clean water. Combine <b>text, images, and data</b>, use a clear persuasive message, and end with a call to action.</p>
-        <p><b>Key vocabulary:</b> hydration, dehydration, sanitation, nutrition, balanced diet, clean water, physical activity.</p>
-      `,
-      lampiran: [],
-      kuis: [
-        { soal: "The main difference between hortatory and analytical exposition is that hortatory exposition ends with a…", pilihan: ["Reiteration", "Recommendation", "Resolution", "Orientation"], benar: 1, bahas: "Hortatory exposition diakhiri recommendation (saran apa yang harus dilakukan)." },
-        { soal: "\"Students ______ bring their own water bottles to reduce plastic waste.\"", pilihan: ["should", "did", "was", "are being"], benar: 0, bahas: "Modal \"should\" dipakai untuk memberi saran/rekomendasi." },
-        { soal: "Which sentence is a recommendation?", pilihan: ["Water makes up about 60% of the human body.", "Many people do not drink enough water.", "Therefore, let's drink eight glasses of water every day.", "Dehydration causes headaches."], benar: 2, bahas: "Ajakan \"let's…\" / \"we should…\" adalah recommendation." },
-        { soal: "What is the purpose of a hortatory exposition?", pilihan: ["To persuade readers that something should or should not be done", "To retell past events", "To describe a person", "To explain a natural process"], benar: 0, bahas: "Hortatory exposition membujuk pembaca agar melakukan/tidak melakukan sesuatu." },
-        { soal: "A good multimodal poster about clean water should include…", pilihan: ["Only a long paragraph", "Text, images, data, and a call to action", "A story with characters", "A list of unrelated pictures"], benar: 1, bahas: "Produk multimodal menggabungkan teks, gambar, data, dan ajakan yang jelas." }
+        <h3>Hortatory Exposition</h3><p>A text that persuades readers that something <b>should or should not be done</b>.</p>
+        <h3>Generic Structure</h3><ul><li><b>Thesis</b></li><li><b>Arguments</b></li><li><b>Recommendation</b>: what readers should do</li></ul>
+        <h3>Persuasive Strategies</h3><ul><li><b>Logos</b> (logic & data): Studies show teenagers need 8–10 hours of sleep.</li><li><b>Pathos</b> (emotion): Imagine how your parents feel when you are sick.</li><li><b>Ethos</b> (credibility): According to the WHO / doctors…</li></ul>
+        <h3>Language Features</h3><ul><li>Modals: <b>should, must, need to, ought to</b></li><li>Persuasive phrases: <b>Let's…, It is important to…</b></li><li>Health vocabulary: hydration, nutrition, balanced diet, exercise, sleep, stress</li></ul>`,
+      aktivitas: [
+        { id: "u4-asesmen", t: "Asesmen Awal Unit 4", ic: "🧭", type: "quiz", note: "Cek kemampuan awalmu", soal: [
+          ["A hortatory exposition ends with a…", ["Reiteration", "Recommendation", "Resolution", "Coda"], 1],
+          ["Choose the modal for advice.", ["should", "did", "was", "has"], 0],
+          ["\"Drink 8 glasses of water a day\" is about…", ["hydration", "pollution", "transportation", "education"], 0],
+          ["A hortatory text tries to…", ["persuade readers to do something", "tell a fairy tale", "describe a person", "report news"], 0],
+          ["\"Let's exercise every morning!\" is a(n)…", ["recommendation", "orientation", "complication", "thesis"], 0]
+        ]},
+        { id: "u4-classify", t: "Lab Logos · Pathos · Ethos", ic: "🎯", type: "classify", note: "Kenali strategi persuasi", intro: "Kelompokkan kalimat persuasif ke strategi yang dipakai.", groups: ["Logos (data/logika)", "Pathos (emosi)", "Ethos (kredibilitas)"], items: [
+          ["Research shows that 30 minutes of exercise lowers stress by 25%.", 0], ["Teenagers who sleep 8 hours score higher on tests.", 0],
+          ["Imagine how sad your family would be if you got sick.", 1], ["Don't let junk food steal your dreams!", 1],
+          ["According to the World Health Organization, teens need daily physical activity.", 2], ["As a doctor with 20 years of experience, I recommend eating more vegetables.", 2]
+        ]},
+        { id: "u4-sort", t: "Lab Podcast Script", ic: "🎙️", type: "sort", note: "Susun naskah podcast", intro: "Susun naskah Hortatory Podcast Station berikut dengan urutan yang benar.", items: [
+          "Thesis — Hi listeners! Today we believe that every student should drink enough water every day.",
+          "Argument 1 — First, water keeps our brain focused. Studies show dehydration lowers concentration.",
+          "Argument 2 — Second, water helps our body recover after sports and keeps our skin healthy.",
+          "Recommendation — So, let's bring a water bottle to school and stop buying sugary drinks!"
+        ]},
+        { id: "u4-game", t: "Game: English Master Unit 4", ic: "🎮", type: "game", note: "Jawab 8 soal, raih trofi!", soal: [
+          ["Analytical vs hortatory: hortatory adds a…", ["recommendation", "complication", "orientation", "coda"], 0],
+          ["\"You ___ eat more fruit.\"", ["should", "did", "were", "has"], 0],
+          ["\"According to doctors…\" uses the strategy of…", ["Logos", "Pathos", "Ethos", "Coda"], 2],
+          ["\"Imagine losing your health forever.\" uses…", ["Logos", "Pathos", "Ethos", "Thesis"], 1],
+          ["A balanced diet includes…", ["only rice", "various nutrients in the right amounts", "only snacks", "no water"], 1],
+          ["Which is a recommendation?", ["Sleep is important.", "Many students sleep late.", "We must sleep at least 8 hours.", "I slept late yesterday."], 2],
+          ["A good recommendation should be…", ["realistic and relevant", "impossible", "unrelated", "very long"], 0],
+          ["A podcast is…", ["an audio program", "a printed poster", "a short story", "a math test"], 0]
+        ]},
+        { id: "u4-latihan", t: "Latihan Unit 4", ic: "📝", type: "quiz", note: "Latihan soal campuran", soal: [
+          ["Which modal shows strong obligation?", ["might", "could", "must", "may"], 2],
+          ["\"Data shows 1 in 5 teenagers is overweight.\" This is…", ["Logos", "Pathos", "Ethos", "Coda"], 0],
+          ["The purpose of the recommendation is to…", ["tell readers what to do", "introduce characters", "describe the setting", "give a title"], 0],
+          ["\"Let's\" is followed by…", ["V1 (base verb)", "V2", "V-ing", "to + V1"], 0]
+        ]}
       ],
-      tugas: null
+      video: [
+        ["Hortatory Exposition Text", yt("hortatory exposition text explanation")],
+        ["Modal Verbs for Advice", yt("modal verbs should must advice english")],
+        ["Logos Pathos Ethos", yt("logos pathos ethos explained for students")],
+        ["How to Make a Podcast", yt("how to make a podcast for students")]
+      ],
+      inspirasi: [["🎬 Inspirasi: Healthy Lifestyle for Teens", yt("healthy lifestyle tips for teenagers")]]
     }
-  ]
+  }
 };

@@ -11,7 +11,7 @@ const APPS = [
   { id: "rpm-unit-2", t: "RPM Unit 2 · Discovering Ourselves", s: "Unit 2 · Discovering Ourselves", cat: "RPM", g: "linear-gradient(160deg,#d6a2ff,#8e44ff)", e: "🦄", tag: "UNIT 2", f: "RPM_Unit_2.docx" },
   { id: "rpm-unit-3", t: "RPM Unit 3 · The Importance of Environmental Protection", s: "Unit 3 · Environment", cat: "RPM", g: "linear-gradient(160deg,#5ac8fa,#0060a8)", e: "🌍", tag: "UNIT 3", f: "RPM_Unit_3.docx" },
   { id: "rpm-unit-4", t: "RPM Unit 4 · Why Should We Live a Healthy Lifestyle?", s: "Unit 4 · Healthy Lifestyle", cat: "RPM", g: "linear-gradient(160deg,#ffb36b,#ff5e3a)", e: "🍎", tag: "UNIT 4", f: "RPM_Unit_4.docx" },
-  { id: "lms", t: "LMS untuk Murid", cat: "Murid", g: "linear-gradient(160deg,#ff9bd2,#ff2d8b)", e: "🎒", tag: "LMS", frame: "lms/" }
+  { id: "lms", t: "Lab English (LMS Murid)", cat: "Murid", g: "linear-gradient(160deg,#ff9bd2,#ff2d8b)", e: "🎒", tag: "LMS", frame: "lms/" }
 ];
 const CATS = ["Semua", "Identitas", "Program", "Kurikulum", "RPM", "Murid"];
 const $ = s => document.querySelector(s);
