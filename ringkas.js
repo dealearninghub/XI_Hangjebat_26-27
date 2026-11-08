@@ -89,14 +89,3 @@ const RINGKAS = {
         <div class="steps">${u.tp.map(t => `<div class="st${t.m === "Asesmen" ? " ev" : ""}"><span>${t.k}</span><b>${t.t}</b><small>${t.b} · ${t.jp} JP</small></div>`).join("")}</div>
       </div>`).join("")}`).join("")}`
 };
-
-UNITS.forEach(u => {
-  RINGKAS["rpm-unit-" + u.no] = () => `
-    <div class="lead" style="--c:${u.c}">${uHead(u)}<h2>${u.t}</h2><p>${u.jenis} · Semester ${u.sem}</p></div>
-    ${statRow([[u.jp + " JP", "Alokasi"], ["P" + u.p, "Pertemuan"], ["4 TP", "+ asesmen"], [u.produk.split(" (")[0], "Proyek"]])}
-    <div class="facts"><div><small>Teks model</small><b>${u.teks}</b></div><div><small>Fokus bahasa</small><b>${u.bahasa}</b></div></div>
-    ${u.tp.map(t => `<div class="tp" style="--c:${u.c}">
-      <div class="tph"><span class="code">${t.k}</span><div><b>${t.t}</b><small><em>${t.b}</em><em>${t.m}</em><em>${t.dpl}</em><em>${t.jp} JP</em></small></div></div>
-      <ol class="meet">${t.p.map(([n, d]) => `<li><span>P${n}</span>${d}</li>`).join("")}</ol>
-    </div>`).join("")}`;
-});
