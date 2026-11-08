@@ -1,0 +1,122 @@
+/* =========================================================
+   Lab English — RETRO skin (loaded after style.css)
+   Keeps every motion from the Liquid Glass version: floating bars,
+   sliding blob, spring presses, shrink-on-scroll, morphing sheet, drifting shapes.
+   Palette: blue #367BC7 · yellow #F3BD45 · crimson #C02656 · wine #A1204D
+   ========================================================= */
+:root{
+  --blue:#367BC7;--yellow:#F3BD45;--red:#C02656;--wine:#A1204D;
+  --cream:#FBF1DE;--cream2:#FFF9EE;--ink:#2A1A2C;--ink2:#6E5A66;
+  --paper:var(--cream);--paper2:var(--cream2);--accent:var(--red);
+  --ok:#2F8F5B;
+  --disp:"Bungee","Rubik",system-ui,sans-serif;--font:"Rubik",system-ui,sans-serif;--mono:"Space Mono",ui-monospace,monospace;
+  --sh:4px 4px 0 var(--ink);--sh2:6px 6px 0 var(--ink);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#2A1A2C;--ink2:#6E5A66;--paper:#FBF1DE;--paper2:#FFF9EE}}
+body{font-family:var(--font);color:var(--ink);background:radial-gradient(rgba(42,26,44,.09) 1.2px,transparent 1.3px) 0 0/18px 18px,var(--cream)}
+
+/* ---------- glass → retro material (same elements, same motion) ---------- */
+.glass,html.lens .glass{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--cream2);color:var(--ink);
+  border:3px solid var(--ink);box-shadow:var(--sh)}
+.glass::before{display:none}
+.glass::after{background:radial-gradient(120px 90px at var(--mx,30%) var(--my,0%),rgba(243,189,69,.45),transparent 70%);mix-blend-mode:multiply;opacity:.6}
+.glass.clear{background:rgba(255,249,238,.92);border-width:2.5px;box-shadow:3px 3px 0 var(--ink)}
+.on-light .glass.regular,.glass.regular.on-light{background:var(--yellow);color:var(--ink)}
+.on-dark .glass.regular,.glass.regular.on-dark{background:var(--cream2);color:var(--ink)}
+
+/* floating top bar + tab bar */
+.topbar,.tabbar{border-radius:18px}
+.brand{font-family:var(--disp);font-weight:400;letter-spacing:.02em;color:var(--ink)}
+.seg a,.tabbar a{font-weight:700}
+.blob{background:var(--blue);border:2.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink);border-radius:12px}
+.on-light .blob{background:var(--blue);box-shadow:2px 2px 0 var(--ink)}
+.seg a.on,.tabbar a.on{color:#fff}
+.seg a,.tabbar a{transition:transform .3s var(--spring),color .3s}
+.back{border-radius:12px;border:2.5px solid var(--ink);background:#fff;opacity:1;box-shadow:2px 2px 0 var(--ink)}
+.back:hover{background:var(--yellow)}
+.tabbar a span{font-family:var(--mono);font-size:10.5px}
+
+/* ---------- content layer ---------- */
+.hero{background:var(--blue)!important;color:#fff}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:54px;z-index:1;
+  background:linear-gradient(var(--yellow) 0 33%,var(--red) 33% 66%,var(--wine) 66%)}
+.unit{color:#fff;border-top:3px solid var(--ink)}
+#u1{background:var(--yellow)!important;color:var(--ink)}
+#u2{background:var(--red)!important}
+#u3{background:var(--blue)!important}
+#u4{background:var(--wine)!important}
+/* drifting shapes stay, now as flat retro circles */
+.mesh i{filter:none;opacity:1;background:rgba(255,255,255,.13)!important;border:3px solid rgba(42,26,44,.22)}
+#u1 .mesh i{background:rgba(255,255,255,.28)!important}
+.mesh i:nth-child(2){border-radius:28%}
+
+.eyebrow{font-family:var(--mono);letter-spacing:.14em;opacity:1}
+.display,.u-title,.plain h2{font-family:var(--disp);font-weight:400;letter-spacing:.005em;line-height:1.02}
+.display{text-shadow:5px 5px 0 var(--wine)}
+.u-title{text-shadow:4px 4px 0 var(--ink)}
+#u1 .u-title{color:var(--red);text-shadow:4px 4px 0 var(--ink)}
+.u-emoji{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--cream2);border:3px solid var(--ink);box-shadow:var(--sh);font-size:34px;filter:none}
+.u-tags span,.sem-label{font-family:var(--mono);color:var(--ink)}
+.chip{color:var(--ink);font-weight:700;border-radius:14px}
+.chip:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.chip:active{transform:translate(3px,3px);box-shadow:none}
+
+/* activity panel */
+.panel{border-radius:22px}
+.act{color:var(--ink);border-radius:14px}
+.act:hover{background:rgba(243,189,69,.35)}
+.act .i{background:var(--yellow);border:2.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.act small{opacity:1;color:var(--ink2)}
+.act .best{background:var(--red);color:#fff;border:2px solid var(--ink)}
+.u-row .lbl{font-family:var(--mono);opacity:1}
+.cta{background:var(--cream2);color:var(--ink);border:3px solid var(--ink);border-radius:14px;box-shadow:var(--sh);transition:transform .15s,box-shadow .15s}
+.cta + .cta{background:var(--yellow)}
+#u1 .cta + .cta{background:var(--blue);color:#fff}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.cta:active{transform:translate(4px,4px);box-shadow:none}
+
+/* plain sections */
+.plain{background:transparent}
+.plain p.sub{color:var(--ink2)}
+.plain .eyebrow[style]{color:var(--red)!important}
+#u1 .eyebrow{color:var(--wine)}
+.list{background:var(--cream2);border:3px solid var(--ink);border-radius:18px;box-shadow:var(--sh2)}
+.list a{border-radius:12px}
+.list a:hover{background:var(--yellow)}
+.ava{background:var(--yellow);color:var(--ink);font-family:var(--disp);font-weight:400;border:3px solid var(--ink);box-shadow:var(--sh)}
+.foot a{color:var(--red)}
+
+/* ---------- sheet (still morphs from the tapped control) ---------- */
+.scrim{background:rgba(42,26,44,.45)}
+.sheet.glass.regular,html.lens .sheet.glass{background:var(--cream2);color:var(--ink);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);border-radius:22px;backdrop-filter:none}
+.sheet-head{border-bottom:3px solid var(--ink);margin:-10px -10px 8px;padding:14px 14px 12px 20px;border-radius:19px 19px 0 0;
+  background:linear-gradient(var(--blue) 0 calc(100% - 9px),var(--yellow) 0 calc(100% - 6px),var(--red) 0 calc(100% - 3px),var(--wine) 0);color:#fff}
+.sheet-head b{font-family:var(--disp);font-weight:400;letter-spacing:.02em}
+.xbtn.glass{border-radius:12px;background:#fff;color:var(--ink)}
+.sheet-body h3{font-family:var(--disp);font-weight:400;color:var(--blue)}
+.prog{height:12px;background:#fff;border:2.5px solid var(--ink)}
+.prog i{background:repeating-linear-gradient(45deg,var(--red) 0 8px,var(--wine) 8px 16px)}
+.opt{background:#fff;border:2.5px solid var(--ink);border-radius:14px;box-shadow:3px 3px 0 var(--ink)}
+.opt:hover:not(:disabled){background:#FDF0CF}
+.opt:active:not(:disabled){transform:translate(3px,3px);box-shadow:none}
+.opt.right{background:var(--ok);color:#fff;box-shadow:3px 3px 0 var(--ink)}
+.opt.wrong{background:var(--red);color:#fff}
+.btn{border:2.5px solid var(--ink);border-radius:14px;box-shadow:var(--sh);background:var(--red)}
+.btn:active{transform:translate(4px,4px);box-shadow:none}
+.btn.alt{background:#fff;color:var(--ink);box-shadow:var(--sh)}
+.sort li,.cl,.fi{background:#fff;border:2.5px solid var(--ink);border-radius:14px}
+.sort li.right,.cl.right,.fi.right{background:#DDF2E5}
+.sort li.wrong,.cl.wrong,.fi.wrong{background:#FADDE6}
+.mv button,.cl .g button{border:2px solid var(--ink);background:var(--cream2);border-radius:10px}
+.cl .g button.pick{background:var(--blue);color:#fff}
+.tag{background:var(--yellow);color:var(--ink);border:2px solid var(--ink)}
+.fi input,.name{background:#fff;border:2.5px solid var(--ink);border-radius:10px;box-shadow:none}
+.big{font-family:var(--disp);font-weight:400;background:none;color:var(--red);-webkit-text-fill-color:var(--red);text-shadow:4px 4px 0 var(--ink)}
+.cert{background:var(--yellow);border:3px solid var(--ink);border-radius:16px;box-shadow:var(--sh)}
+.ladder{background:#fff;border:2.5px solid var(--ink);border-radius:14px}
+.ladder li{border-radius:8px}
+.ladder li.now{background:var(--blue);color:#fff}
+.ladder li.done{color:var(--ok)}
+.lifeline{background:var(--yellow);color:var(--ink);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);border-radius:12px}
+
+@media (max-width:700px){.hero::after{height:40px}.u-emoji{width:54px;height:54px;font-size:28px}}
