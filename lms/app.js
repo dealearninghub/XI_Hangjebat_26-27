@@ -39,7 +39,7 @@ function unitSection(k, u, sem, si) {
     <p class="u-desk">${u.desk}</p>
     <div class="u-tags">${u.tags.map(t => `<span class="glass clear">${t}</span>`).join("")}</div>
     <div class="panel glass clear"><div class="acts">${u.aktivitas.map(a => `<button class="act" onclick="openAct('${a.id}', this)"><span class="i">${a.ic}</span><span><b>${a.t}</b><small>${a.note || ""}</small></span>${best[a.id] != null ? `<span class="best">⭐ ${best[a.id]}</span>` : ""}</button>`).join("")}</div></div>
-    <div class="u-row"><button class="cta" onclick="openMateri('${k}', this)">Read the Summary →</button></div>
+    <div class="u-row"><button class="cta" onclick="openMateri('${k}', this)">Read the Summary →</button><a class="cta" href="lkpd.html?u=${+u.no}" style="text-decoration:none">📝 Worksheets (LKPD) →</a></div>
     <div class="u-row"><span class="lbl">🎬 Video</span>${u.video.concat(u.inspirasi || []).map(([t, url]) => `<a class="chip glass clear" href="${url}" target="_blank" rel="noopener">▶ ${t}</a>`).join("")}</div>
   </section>`;
 }
@@ -223,3 +223,5 @@ const Fill = {
 render();
 ["#tabbar", "#topbar"].forEach(s => $(s).addEventListener("transitionend", () => { moveBlob($("#tabBlob"), $("#tabbar a.on")); }));
 setTimeout(onScroll, 400);
+// open a game from a link like lms/#act=u1-quiz (used by the LKPD Practice tab)
+if (location.hash.startsWith("#act=")) { const id = location.hash.slice(5); if (ACT[id]) setTimeout(() => { const u = document.getElementById(ACT[id].unit === L.units.u1 ? "u1" : Object.keys(L.units).find(k => L.units[k] === ACT[id].unit)); if (u) u.scrollIntoView(); openAct(id); }, 450); }
