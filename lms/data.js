@@ -90,7 +90,7 @@ const LAB = {
         ["Sequence Words in Stories", yt("sequence words in narrative text")],
         ["Indonesian Legends in English", yt("indonesian legend story in english")]
       ],
-      inspirasi: [["🎬 Inspirasi: Hutan Mangrove Batam", yt("hutan mangrove batam")]]
+      inspirasi: [["🎬 Mangrove Forests in Batam", yt("hutan mangrove batam")]]
     },
     // ------------------------------------------------------------- UNIT 2
     u2: {
@@ -149,7 +149,7 @@ const LAB = {
         ["Reported Speech", yt("reported speech explanation examples")],
         ["How to Make a Motion Comic", yt("how to make a motion comic tutorial")]
       ],
-      inspirasi: [["🎬 Inspirasi: Short Animated Films", yt("short animated film self discovery")]]
+      inspirasi: [["🎬 Short Animated Films", yt("short animated film self discovery")]]
     },
     // ------------------------------------------------------------- UNIT 3
     u3: {
@@ -204,7 +204,7 @@ const LAB = {
         ["Causal Conjunctions", yt("cause and effect conjunctions therefore thus due to")],
         ["Evaluating Sources", yt("how to evaluate credible sources for students")]
       ],
-      inspirasi: [["🎬 Inspirasi: Environmental Campaign Videos", yt("environmental campaign video students")]]
+      inspirasi: [["🎬 Environmental Campaign Videos", yt("environmental campaign video students")]]
     },
     // ------------------------------------------------------------- UNIT 4
     u4: {
@@ -258,7 +258,7 @@ const LAB = {
         ["Logos Pathos Ethos", yt("logos pathos ethos explained for students")],
         ["How to Make a Podcast", yt("how to make a podcast for students")]
       ],
-      inspirasi: [["🎬 Inspirasi: Healthy Lifestyle for Teens", yt("healthy lifestyle tips for teenagers")]]
+      inspirasi: [["🎬 Healthy Lifestyle for Teens", yt("healthy lifestyle tips for teenagers")]]
     }
   }
 };
