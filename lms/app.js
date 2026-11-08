@@ -18,8 +18,9 @@ const TABS = [["beranda", "🏠", "Home"], ["u1", "🌿", "Sem 1"], ["u3", "🌍
 
 function render() {
   $("#beranda").innerHTML = MESH(["#7b7cff", "#ff8cc6", "#ffc16b"]) + `
-    <p class="eyebrow">Advanced English · Grade XI</p>
-    <h1 class="display">Lab English<br>Ms. Dea.</h1>
+    <p class="eyebrow">Bahasa Inggris Tingkat Lanjut · Grade XI</p>
+    <h1 class="display">Bahasa Inggris<br>TL Corner</h1>
+    <p class="teacher-name">${L.guru}</p>
     <p class="lede">${L.tagline}</p>
     <div class="chips">${L.heroLinks.concat(L.driveLinks.filter(d => d.url !== "#")).map(l => `<a class="chip glass clear" href="${l.url}" target="_blank" rel="noopener">${l.t}</a>`).join("")}</div>`;
   $("#sems").innerHTML = L.semester.map((s, si) => s.units.map((k, i) => unitSection(k, L.units[k], i === 0 ? s : null, si)).join("")).join("");
