@@ -70,7 +70,7 @@ const SITUS = {
     },
     {
       id: "bab2",
-      judul: "Bab 2: Self Discovery – Fairy Tales & Fantasy Stories",
+      judul: "Bab 2: Discovering Ourselves – Fairy Tale & Fantasy",
       ringkas: "Membaca kritis teks narasi, eksposisi & diskusi · Annotated reading, text analysis, esai perbandingan. Semester 1 · 45 JP",
       tujuan: [
         "Mengidentifikasi informasi tersurat dan tersirat (makna implisit, tujuan penulis, sudut pandang) melalui graphic organizer atau annotated reading.",
@@ -161,7 +161,7 @@ const SITUS = {
     },
     {
       id: "bab4",
-      judul: "Bab 4: Healthy Lifestyle & Water",
+      judul: "Bab 4: Why Should We Live a Healthy Lifestyle?",
       ringkas: "Hortatory Exposition (lintas mapel PJOK) · Teks persuasif & presentasi produk multimodal. Semester 2 · 45 JP",
       tujuan: [
         "Memahami fungsi, struktur, dan ciri kebahasaan hortatory exposition.",
