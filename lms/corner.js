@@ -23,7 +23,7 @@ const U = LAB.units[uk], D = LKPD[uk];
 const [UC, UBG] = UNIT_BG[uk];
 document.documentElement.style.setProperty("--u", UC);
 document.title = `LKPD Unit ${U.no} · Lab English XI`;
-$('meta[name="theme-color"]').content = UC;
+
 
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } };
