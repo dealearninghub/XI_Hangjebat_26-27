@@ -23,7 +23,7 @@ const uk = (LAB.sembunyi || []).includes(uk0) ? "u1" : uk0;
 const U = LAB.units[uk], D = LKPD[uk];
 const [UC, UBG] = UNIT_BG[uk];
 document.documentElement.style.setProperty("--u", UC);
-document.title = `LKPD Unit ${U.no} · Lab English XI`;
+document.title = `LKPD Unit ${U.no} · Think Lab`;
 
 
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -154,7 +154,7 @@ addEventListener("beforeprint", () => document.querySelectorAll("details.read").
 // =====================================================================
 const TABS = [["theory", "Theory"], ["steps", "Steps"], ["sim", "Simulation"], ["lkpd", "LKPD"], ["dev", "Developer"]];
 const K = CORNER[uk];
-document.title = `${K.name} · Lab English XI`;
+document.title = `${K.name} · Think Lab`;
 
 // ---------- sound (Web Audio, no files) ----------
 let soundOn = load("corner-sound", true), actx;

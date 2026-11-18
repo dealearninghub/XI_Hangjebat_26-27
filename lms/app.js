@@ -21,7 +21,7 @@ const TABS = TABS0.filter(t => vis(t[0]));
 function render() {
   $("#beranda").innerHTML = MESH(["#7b7cff", "#ff8cc6", "#ffc16b"]) + `
     <p class="eyebrow">Bahasa Inggris Tingkat Lanjut · Grade XI</p>
-    <h1 class="display">Bahasa Inggris<br>TL Corner</h1>
+    <h1 class="display">Welcome to<br>Think Lab</h1>
     <p class="teacher-name">${L.guru}</p>
     <p class="lede">${L.tagline}</p>
     <div class="chips">${L.heroLinks.concat(L.driveLinks.filter(d => d.url !== "#")).map(l => `<a class="chip glass clear" href="${l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ""}>${l.t}</a>`).join("")}</div>`;
@@ -29,7 +29,7 @@ function render() {
   $("#pustaka").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Extra</p><h2>Digital Library</h2><p class="sub">Free English books and websites to read more.</p>
     <div class="list">${L.perpustakaan.map(p => `<a href="${p.url}" target="_blank" rel="noopener">${p.t}<span>↗</span></a>`).join("")}</div>`;
   $("#profil").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Your Teacher</p><div class="prof"><div class="ava">DA</div><div><h3>${L.guru}</h3><p>${L.jabatan}</p></div></div>
-    <p class="foot">© 2026 Lab English XI Lanjut · SMAN 1 Batam · <a href="../">Teacher's Page</a></p>`;
+    <p class="foot">© 2026 Think Lab · Bahasa Inggris Tingkat Lanjut XI · SMAN 1 Batam · <a href="../">Teacher's Page</a></p>`;
   $("#seg").innerHTML = `<i class="blob" id="segBlob"></i>` + Object.entries(L.units).filter(([k]) => vis(k)).map(([k, u]) => `<a href="#${k}" data-k="${k}">${u.emoji} <span>Unit ${+u.no}</span></a>`).join("");
   $("#tabbar").innerHTML = `<i class="blob" id="tabBlob"></i>` + TABS.map(([k, e, t]) => `<a href="#${k}" data-k="${k}"><b>${e}</b><span>${t}</span></a>`).join("");
   wireGlass(); onScroll();
