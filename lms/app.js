@@ -22,7 +22,7 @@ function render() {
     <h1 class="display">Bahasa Inggris<br>TL Corner</h1>
     <p class="teacher-name">${L.guru}</p>
     <p class="lede">${L.tagline}</p>
-    <div class="chips">${L.heroLinks.concat(L.driveLinks.filter(d => d.url !== "#")).map(l => `<a class="chip glass clear" href="${l.url}" target="_blank" rel="noopener">${l.t}</a>`).join("")}</div>`;
+    <div class="chips">${L.heroLinks.concat(L.driveLinks.filter(d => d.url !== "#")).map(l => `<a class="chip glass clear" href="${l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ""}>${l.t}</a>`).join("")}</div>`;
   $("#sems").innerHTML = L.semester.map((s, si) => s.units.map((k, i) => unitSection(k, L.units[k], i === 0 ? s : null, si)).join("")).join("");
   $("#pustaka").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Extra</p><h2>Digital Library</h2><p class="sub">Free English books and websites to read more.</p>
     <div class="list">${L.perpustakaan.map(p => `<a href="${p.url}" target="_blank" rel="noopener">${p.t}<span>↗</span></a>`).join("")}</div>`;

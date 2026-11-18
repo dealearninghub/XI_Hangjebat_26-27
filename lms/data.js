@@ -11,6 +11,7 @@ const LAB = {
   judul: "Lab English XI Lanjut",
   tagline: "Read stories, share your ideas, and play fun English games.",
   heroLinks: [
+    { t: "📘 Grammar Corner", url: "grammar.html" },
     { t: "🎬 Get Motivated", url: yt("motivational video for students learning english") },
     { t: "❓ Why Learn English?", url: yt("why learn english importance for students") },
     { t: "🎵 Learn With Songs", url: yt("english songs with lyrics for learning") },

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#367BC7">
+<title>Grammar Corner · Bahasa Inggris TL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="corner.css">
+<link rel="stylesheet" href="grammar.css">
+</head>
+<body class="corner grammar">
+<div class="app">
+  <header class="bar">
+    <i class="stripes"></i>
+    <a class="back2" href="./" title="Back to Bahasa Inggris TL Corner">‹</a>
+    <div class="logo">📘</div>
+    <div class="brand2"><b>Grammar Corner</b><small>BAHASA INGGRIS TINGKAT LANJUT — FASE F</small></div>
+  </header>
+  <main class="view">
+    <div class="crumb">Grammar · watch all year long</div>
+    <h1 class="ttl">Grammar <em>Videos</em></h1>
+    <div class="gwrap">
+      <section class="pane player">
+        <h5 id="gnum">Video 01</h5>
+        <div class="frame"><iframe id="gframe" title="Grammar video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+        <h2 id="gtitle"></h2>
+        <a id="gyt" class="ytlink" target="_blank" rel="noopener">Open on YouTube ↗</a>
+      </section>
+      <section class="pane list">
+        <h5>All Videos</h5>
+        <ol id="glist"></ol>
+      </section>
+    </div>
+  </main>
+</div>
+<script>
+// Ubah daftar di sini: [nomor, judul, ID YouTube]. ID = bagian setelah "v=" pada link video.
+const GRAMMAR = [
+  ["01", "Simple Past", "kyhFeX6S3ro"],
+  ["02", "Simple Present", "iFfVv-OqJvE"],
+  ["03", "Adjective Clause", "11gmokthT9A"],
+  ["04", "Reduced Adjective Clause", "ge89puGvIag"],
+  ["05", "Modal Verbs", "c43ECndTDxc"],
+  ["06", "Causal Conjunctions", "-_Qt7ZPqTqI"],
+  ["07", "Reported Speech", "V13KySGMu3o"],
+  ["08", "Independent and Dependent Clause", "88E6DNI0ju4"],
+  ["09", "Noun Phrase and Adjective Order", "QmIPXmkIKis"],
+  ["10", "Imperative Sentences", "oklwyhC-w9M"]
+];
+const $ = s => document.querySelector(s);
+function show(i, play) {
+  const g = GRAMMAR[i]; if (!g) return;
+  $("#gnum").textContent = "Video " + g[0];
+  $("#gtitle").textContent = g[1];
+  $("#gframe").src = "https://www.youtube-nocookie.com/embed/" + g[2] + (play ? "?autoplay=1&rel=0" : "?rel=0");
+  $("#gyt").href = "https://www.youtube.com/watch?v=" + g[2];
+  document.querySelectorAll("#glist button").forEach((b, k) => b.classList.toggle("on", k === i));
+  try { history.replaceState(null, "", "#" + g[0]); } catch (e) {}
+}
+$("#glist").innerHTML = GRAMMAR.map((g, i) => `<li><button type="button" data-i="${i}"><b>${g[0]}</b><span>${g[1]}</span><i>▶</i></button></li>`).join("");
+$("#glist").addEventListener("click", e => { const b = e.target.closest("button"); if (b) show(+b.dataset.i, true); });
+const start = Math.max(0, GRAMMAR.findIndex(g => g[0] === location.hash.slice(1)));
+show(start, false);
+</script>
+</body>
+</html>
