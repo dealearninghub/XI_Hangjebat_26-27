@@ -21,12 +21,6 @@ const LAB = {
     { t: "📁 Semester 1 Files", url: "#" },
     { t: "📁 Semester 2 Files", url: "#" }
   ],
-  perpustakaan: [
-    { t: "📚 British Council LearnEnglish Teens", url: "https://learnenglishteens.britishcouncil.org/" },
-    { t: "📖 StoryWeaver (free picture books)", url: "https://storyweaver.org.in/" },
-    { t: "📜 Project Gutenberg (classic stories)", url: "https://www.gutenberg.org/" },
-    { t: "🏛️ SIBI (school books)", url: "https://buku.kemdikbud.go.id/" }
-  ],
   // Unit yang disembunyikan dari murid. Kosongkan jadi [] atau hapus "u3", "u4" untuk menampilkannya lagi.
   sembunyi: ["u3", "u4"],
   semester: [

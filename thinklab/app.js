@@ -15,7 +15,7 @@ const UNIT_BG = {
 };
 const MESH = c => `<div class="mesh">${c.map((x, i) => `<i style="background:${x};left:${[5, 55, 25][i]}%;top:${[5, 15, 55][i]}%"></i>`).join("")}</div>`;
 const vis = k => !(LAB.sembunyi || []).includes(k);
-const TABS0 = [["beranda", "🏠", "Home"], ["u1", "🌿", "Sem 1"], ["u3", "🌍", "Sem 2"], ["pustaka", "📚", "Library"], ["profil", "👩‍🏫", "Teacher"]];
+const TABS0 = [["beranda", "🏠", "Home"], ["u1", "🌿", "Sem 1"], ["u3", "🌍", "Sem 2"], ["profil", "👩‍🏫", "Teacher"]];
 const TABS = TABS0.filter(t => vis(t[0]));
 
 function render() {
@@ -26,8 +26,6 @@ function render() {
     <p class="lede">${L.tagline}</p>
     <div class="chips">${L.heroLinks.concat(L.driveLinks.filter(d => d.url !== "#")).map(l => `<a class="chip glass clear" href="${l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ""}>${l.t}</a>`).join("")}</div>`;
   $("#sems").innerHTML = L.semester.map((s, si) => s.units.filter(vis).map((k, i) => unitSection(k, L.units[k], i === 0 ? s : null, si)).join("")).join("");
-  $("#pustaka").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Extra</p><h2>Digital Library</h2><p class="sub">Free English books and websites to read more.</p>
-    <div class="list">${L.perpustakaan.map(p => `<a href="${p.url}" target="_blank" rel="noopener">${p.t}<span>↗</span></a>`).join("")}</div>`;
   $("#profil").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Your Teacher</p><div class="prof"><div class="ava">DA</div><div><h3>${L.guru}</h3><p>${L.jabatan}</p></div></div>
     <p class="foot">© 2026 Think Lab · Bahasa Inggris Tingkat Lanjut XI · SMAN 1 Batam</p>`;
   $("#seg").innerHTML = `<i class="blob" id="segBlob"></i>` + Object.entries(L.units).filter(([k]) => vis(k)).map(([k, u]) => `<a href="#${k}" data-k="${k}">${u.emoji} <span>Unit ${+u.no}</span></a>`).join("");
