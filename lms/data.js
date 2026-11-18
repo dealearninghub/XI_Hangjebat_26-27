@@ -85,11 +85,11 @@ const LAB = {
         ]}
       ],
       video: [
-        ["Legend", "https://www.youtube.com/watch?v=FM8E8QsFpQA"],
-        ["Main Idea", "https://www.youtube.com/watch?v=zTVYadNxK2Q"],
-        ["Simple Past", "https://www.youtube.com/watch?v=nWrPtY0hdxw"],
-        ["Sequence Words", "https://www.youtube.com/watch?v=_wduLjbnrGs"],
-        ["Poster Project", "https://www.youtube.com/watch?v=O1Q3TH8W-zM"]
+        ["Legend", "https://youtu.be/FM8E8QsFpQA?si=XLEn3mjynQhUFc_M"],
+        ["Main Idea", "https://youtu.be/zTVYadNxK2Q?si=tHjrTz1F67vSTlw8"],
+        ["Simple Past", "https://youtu.be/nWrPtY0hdxw?si=CQCcylxOuOSj4dMm"],
+        ["Sequence Words", "https://youtu.be/_wduLjbnrGs?si=YIeiQRSqJI1eeWhm"],
+        ["Poster Project", "https://youtu.be/O1Q3TH8W-zM?si=JW5CmACh-NyUyYNx"]
       ],
       inspirasi: [["🎬 Mangrove Forests in Batam", yt("hutan mangrove batam")]]
     },
@@ -145,11 +145,11 @@ const LAB = {
         ]}
       ],
       video: [
-        ["Story Elements", "https://www.youtube.com/watch?v=Xnb694zNboU"],
-        ["Conflict & Change", "https://www.youtube.com/watch?v=7MSCJ8-qkkA"],
-        ["Noun Phrases", "https://www.youtube.com/watch?v=W1T7jsn3QD4"],
-        ["Adjective Clauses", "https://www.youtube.com/watch?v=78zAJloytSk"],
-        ["Reported Speech", "https://www.youtube.com/watch?v=wMO-wSBmgnI"]
+        ["Story Elements", "https://youtu.be/Xnb694zNboU?si=J3KxcGSro0yiPYh4"],
+        ["Conflict & Change", "https://youtu.be/7MSCJ8-qkkA?si=0hY4uFwkTH1EYC0N"],
+        ["Noun Phrases", "https://youtu.be/W1T7jsn3QD4?si=r7YMfZ0Flq4jyiZ0"],
+        ["Adjective Clauses", "https://youtu.be/78zAJloytSk?si=Yg47CQUPk1UA51hu"],
+        ["Reported Speech", "https://youtu.be/wMO-wSBmgnI?si=xaNTX40QOny6YbE7"]
       ],
       inspirasi: [["🎬 Short Animated Films", yt("short animated film self discovery")]]
     },
