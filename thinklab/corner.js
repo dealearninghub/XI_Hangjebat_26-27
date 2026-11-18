@@ -334,7 +334,7 @@ function printQuiz(st) {
 // ---------- developer ----------
 function viewDev() {
   return `${crumb()}<div class="two">
-    <div class="col"><div class="pane prof2"><div class="ava2">DA</div><div><b>${LAB.guru}</b><small>ADVANCED ENGLISH TEACHER</small><span>SMA Negeri 1 Batam · Phase F module developer</span></div></div>
+    <div class="col"><div class="pane prof2"><div class="ava2">DA</div><div><b>${LAB.guru}</b><small>GURU BAHASA INGGRIS TINGKAT LANJUT</small><span>SMA Negeri 1 Batam · Phase F module developer</span></div></div>
       <div class="pane"><h5>Module information</h5><table class="info">
         <tr><td>Module</td><td>${K.name}</td></tr><tr><td>Subject</td><td>Bahasa Inggris Tingkat Lanjut</td></tr>
         <tr><td>Unit</td><td>Unit ${U.no}: ${U.judul}</td></tr><tr><td>Text type</td><td>${K.sub}</td></tr>

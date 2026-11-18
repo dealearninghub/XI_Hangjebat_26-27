@@ -7,7 +7,7 @@ const yt = q => "https://www.youtube.com/results?search_query=" + encodeURICompo
 
 const LAB = {
   guru: "Dea Arioktavia, S.Pd",
-  jabatan: "Advanced English Teacher · SMAN 1 Batam",
+  jabatan: "Guru Bahasa Inggris Tingkat Lanjut · SMAN 1 Batam",
   judul: "Think Lab",
   tagline: "Welcome to Think Lab! This is your space to read stories, share your ideas, and think in English. Watch the videos, play the games, and finish the LKPD at your own pace. Stay curious and keep thinking!",
   heroLinks: [
