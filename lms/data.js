@@ -85,10 +85,11 @@ const LAB = {
         ]}
       ],
       video: [
-        ["Narrative Text: Generic Structure", yt("narrative text generic structure legend")],
-        ["Simple Past Tense (Regular & Irregular)", yt("simple past tense regular irregular verbs explanation")],
-        ["Sequence Words in Stories", yt("sequence words in narrative text")],
-        ["Indonesian Legends in English", yt("indonesian legend story in english")]
+        ["Legend", "https://www.youtube.com/watch?v=FM8E8QsFpQA"],
+        ["Main Idea", "https://www.youtube.com/watch?v=zTVYadNxK2Q"],
+        ["Simple Past", "https://www.youtube.com/watch?v=nWrPtY0hdxw"],
+        ["Sequence Words", "https://www.youtube.com/watch?v=_wduLjbnrGs"],
+        ["Poster Project", "https://www.youtube.com/watch?v=O1Q3TH8W-zM"]
       ],
       inspirasi: [["🎬 Mangrove Forests in Batam", yt("hutan mangrove batam")]]
     },
@@ -144,10 +145,11 @@ const LAB = {
         ]}
       ],
       video: [
-        ["Elements of a Story", yt("elements of a story characters setting conflict")],
-        ["Internal vs External Conflict", yt("internal and external conflict explanation")],
-        ["Reported Speech", yt("reported speech explanation examples")],
-        ["How to Make a Motion Comic", yt("how to make a motion comic tutorial")]
+        ["Story Elements", "https://www.youtube.com/watch?v=Xnb694zNboU"],
+        ["Conflict & Change", "https://www.youtube.com/watch?v=7MSCJ8-qkkA"],
+        ["Noun Phrases", "https://www.youtube.com/watch?v=W1T7jsn3QD4"],
+        ["Adjective Clauses", "https://www.youtube.com/watch?v=78zAJloytSk"],
+        ["Reported Speech", "https://www.youtube.com/watch?v=wMO-wSBmgnI"]
       ],
       inspirasi: [["🎬 Short Animated Films", yt("short animated film self discovery")]]
     },
@@ -199,10 +201,11 @@ const LAB = {
         ]}
       ],
       video: [
-        ["Analytical Exposition Text", yt("analytical exposition text explanation")],
-        ["Claim Evidence Reasoning (CER)", yt("claim evidence reasoning CER explained")],
-        ["Causal Conjunctions", yt("cause and effect conjunctions therefore thus due to")],
-        ["Evaluating Sources", yt("how to evaluate credible sources for students")]
+        ["Stories to Arguments", "https://www.youtube.com/watch?v=rUdIzaSeEc0"],
+        ["Text Structure", "https://www.youtube.com/watch?v=KWtVyF5n9Uk"],
+        ["Causal Conjunctions", "https://www.youtube.com/watch?v=CO8Cr3jo9MY"],
+        ["Claim-Evidence-Reasoning", "https://www.youtube.com/watch?v=nKgKZGP4LrU"],
+        ["Green Journalism", "https://www.youtube.com/watch?v=znuw7j49cTw"]
       ],
       inspirasi: [["🎬 Environmental Campaign Videos", yt("environmental campaign video students")]]
     },
@@ -253,10 +256,11 @@ const LAB = {
         ]}
       ],
       video: [
-        ["Hortatory Exposition Text", yt("hortatory exposition text explanation")],
-        ["Modal Verbs for Advice", yt("modal verbs should must advice english")],
-        ["Logos Pathos Ethos", yt("logos pathos ethos explained for students")],
-        ["How to Make a Podcast", yt("how to make a podcast for students")]
+        ["Healthy Words", "https://www.youtube.com/watch?v=4Hkpt1PydlY"],
+        ["Call to Action", "https://www.youtube.com/watch?v=I2VrFwGQ9uw"],
+        ["Modal Verbs", "https://www.youtube.com/watch?v=IALWOVw5Lhg"],
+        ["Imperatives & Ethos", "https://www.youtube.com/watch?v=T3J3cnG-kAg"],
+        ["Evaluate Advice", "https://www.youtube.com/watch?v=AFpnDNF6kpI"]
       ],
       inspirasi: [["🎬 Healthy Lifestyle for Teens", yt("healthy lifestyle tips for teenagers")]]
     }
