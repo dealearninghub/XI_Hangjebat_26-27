@@ -18,7 +18,8 @@ const CP = {
 const EVAL = { u1: "Meeting 17-18", u2: "Meeting 33-34", u3: "Meeting 51-52", u4: "Meeting 69-70" };
 const _OLD_TABS = [["theory", "<i>📘 </i>Theory"], ["steps", "<i>🧭 </i>Steps"], ["practice", "<i>🎮 </i>Practice"], ["ws", "<i>📝 </i>LKPD"], ["about", "<i>ℹ️ </i>About"]];
 
-const uk = "u" + (Math.min(4, Math.max(1, +new URLSearchParams(location.search).get("u") || 1)));
+const uk0 = "u" + (Math.min(4, Math.max(1, +new URLSearchParams(location.search).get("u") || 1)));
+const uk = (LAB.sembunyi || []).includes(uk0) ? "u1" : uk0;
 const U = LAB.units[uk], D = LKPD[uk];
 const [UC, UBG] = UNIT_BG[uk];
 document.documentElement.style.setProperty("--u", UC);
@@ -175,7 +176,7 @@ function beep(ok) {
 $("#logo").textContent = K.icon;
 $("#appTitle").innerHTML = `${K.name} <span>· ${U.judul}</span>`;
 $("#backLink").href = "./#" + uk;
-$("#units").innerHTML = Object.keys(CORNER).map((k, i) => `<a href="?u=${i + 1}" class="${k === uk ? "on" : ""}" title="${CORNER[k].name}">${CORNER[k].icon}</a>`).join("");
+$("#units").innerHTML = Object.keys(CORNER).map((k, i) => (LAB.sembunyi || []).includes(k) ? "" : `<a href="?u=${i + 1}" class="${k === uk ? "on" : ""}" title="${CORNER[k].name}">${CORNER[k].icon}</a>`).join("");
 $("#tabs").innerHTML = TABS.map(([k, t]) => `<a href="#${k}" data-k="${k}">${t}</a>`).join("");
 
 function route() {

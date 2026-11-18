@@ -27,6 +27,8 @@ const LAB = {
     { t: "📜 Project Gutenberg (classic stories)", url: "https://www.gutenberg.org/" },
     { t: "🏛️ SIBI (school books)", url: "https://buku.kemdikbud.go.id/" }
   ],
+  // Unit yang disembunyikan dari murid. Kosongkan jadi [] atau hapus "u3", "u4" untuk menampilkannya lagi.
+  sembunyi: ["u3", "u4"],
   semester: [
     { nama: "Semester 1", sub: "Stories: legends and fairy tales", units: ["u1", "u2"] },
     { nama: "Semester 2", sub: "Opinion texts: analytical and hortatory exposition", units: ["u3", "u4"] }

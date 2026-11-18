@@ -14,7 +14,9 @@ const UNIT_BG = {
   u4: "radial-gradient(60% 60% at 15% 15%,#ffc46b,transparent 60%),radial-gradient(50% 60% at 90% 30%,#ff5f8f,transparent 60%),radial-gradient(70% 60% at 60% 100%,#a3261a,transparent 65%),#e2552c"
 };
 const MESH = c => `<div class="mesh">${c.map((x, i) => `<i style="background:${x};left:${[5, 55, 25][i]}%;top:${[5, 15, 55][i]}%"></i>`).join("")}</div>`;
-const TABS = [["beranda", "🏠", "Home"], ["u1", "🌿", "Sem 1"], ["u3", "🌍", "Sem 2"], ["pustaka", "📚", "Library"], ["profil", "👩‍🏫", "Teacher"]];
+const vis = k => !(LAB.sembunyi || []).includes(k);
+const TABS0 = [["beranda", "🏠", "Home"], ["u1", "🌿", "Sem 1"], ["u3", "🌍", "Sem 2"], ["pustaka", "📚", "Library"], ["profil", "👩‍🏫", "Teacher"]];
+const TABS = TABS0.filter(t => vis(t[0]));
 
 function render() {
   $("#beranda").innerHTML = MESH(["#7b7cff", "#ff8cc6", "#ffc16b"]) + `
@@ -23,12 +25,12 @@ function render() {
     <p class="teacher-name">${L.guru}</p>
     <p class="lede">${L.tagline}</p>
     <div class="chips">${L.heroLinks.concat(L.driveLinks.filter(d => d.url !== "#")).map(l => `<a class="chip glass clear" href="${l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ""}>${l.t}</a>`).join("")}</div>`;
-  $("#sems").innerHTML = L.semester.map((s, si) => s.units.map((k, i) => unitSection(k, L.units[k], i === 0 ? s : null, si)).join("")).join("");
+  $("#sems").innerHTML = L.semester.map((s, si) => s.units.filter(vis).map((k, i) => unitSection(k, L.units[k], i === 0 ? s : null, si)).join("")).join("");
   $("#pustaka").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Extra</p><h2>Digital Library</h2><p class="sub">Free English books and websites to read more.</p>
     <div class="list">${L.perpustakaan.map(p => `<a href="${p.url}" target="_blank" rel="noopener">${p.t}<span>↗</span></a>`).join("")}</div>`;
   $("#profil").innerHTML = `<p class="eyebrow" style="color:var(--accent)">Your Teacher</p><div class="prof"><div class="ava">DA</div><div><h3>${L.guru}</h3><p>${L.jabatan}</p></div></div>
     <p class="foot">© 2026 Lab English XI Lanjut · SMAN 1 Batam · <a href="../">Teacher's Page</a></p>`;
-  $("#seg").innerHTML = `<i class="blob" id="segBlob"></i>` + Object.entries(L.units).map(([k, u]) => `<a href="#${k}" data-k="${k}">${u.emoji} <span>Unit ${+u.no}</span></a>`).join("");
+  $("#seg").innerHTML = `<i class="blob" id="segBlob"></i>` + Object.entries(L.units).filter(([k]) => vis(k)).map(([k, u]) => `<a href="#${k}" data-k="${k}">${u.emoji} <span>Unit ${+u.no}</span></a>`).join("");
   $("#tabbar").innerHTML = `<i class="blob" id="tabBlob"></i>` + TABS.map(([k, e, t]) => `<a href="#${k}" data-k="${k}"><b>${e}</b><span>${t}</span></a>`).join("");
   wireGlass(); onScroll();
 }
